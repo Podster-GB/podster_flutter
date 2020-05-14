@@ -37,18 +37,33 @@ class BannerTile extends StatelessWidget {
                   width: 100.0,
                 ),
               ),
-              Container(
-                width: 210.0,
-                margin: EdgeInsets.only(
-                  left: 10.0,
-                  right: 10.0,
-                ),
-                child: Text(
-                  synopsis,
-                  softWrap: true,
-                  style: TextStyle(
-                    fontSize: 18.0,
-                  ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(left: 20.0, bottom: 5.0),
+                      child: Text(
+                        title,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 20.0),
+                      child: Text(
+                        synopsis
+                            .split(RegExp('[.!?\\-]'))[0], // matches first line
+                        softWrap: true,
+                        style: TextStyle(
+                          fontSize: 12.0,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
