@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:podster_flutter/components/banner_tile.dart';
 
 class ForYou extends StatelessWidget {
   @override
@@ -33,6 +34,35 @@ class ForYou extends StatelessWidget {
         ),
         body: ListView(
           children: <Widget>[
+            Container(
+              height: 200.0,
+              padding: EdgeInsets.symmetric(
+                vertical: 20.0,
+                horizontal: 10.0,
+              ),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(right: 5.0),
+                    child: BannerTile(
+                      onTap: () {},
+                      color: Colors.purple[200],
+                      image: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ839xFUO1W7b0oJYM0FbDDFaBrhxOqrP83mPbskdAIaAaym2tt',
+                      title: 'Ear Hustle',
+                      synopsis: 'Ear Hustle brings you the daily realities of life inside prison shared by those living it, and stories from the outside, post-incarceration.',
+                    ),
+                  ),
+                  BannerTile(
+                    onTap: () {},
+                    color: Color(0xFFFBE6A7),
+                    image: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTOyakdJqxziOy1PQC-FCUYFZ2OFFn00LJYofecw2WX8KrbZ5Q',
+                    title: 'The Good News Podcast',
+                    synopsis: 'The Good News Podcast is your daily reminder that not all news is bad, produced by Colleen and Neil. 👁',
+                  ),
+                ],
+              ),
+            ),
             Card(
               child: Column(
                 children: <Widget>[
