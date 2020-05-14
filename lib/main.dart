@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:podster_flutter/constants.dart';
 import 'package:podster_flutter/screens/for_you.dart';
 import 'package:podster_flutter/screens/landing.dart';
 
@@ -11,8 +12,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Podster',
       theme: ThemeData(
-        primaryColor: Colors.purple[50],
-        accentColor: Colors.purple[200],
+        primaryColor: PRIMARY_COLOR,
+        accentColor: ACCENT_COLOR,
       ),
       initialRoute: '/',
       routes: {

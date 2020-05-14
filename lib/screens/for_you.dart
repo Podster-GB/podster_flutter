@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:podster_flutter/components/banner_tile.dart';
+import 'package:podster_flutter/components/link_button.dart';
+import 'package:podster_flutter/constants.dart';
+import 'package:podster_flutter/mock_data.dart';
 
 class ForYou extends StatelessWidget {
+  MockData mockDataProvider = MockData();
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -34,6 +39,7 @@ class ForYou extends StatelessWidget {
         ),
         body: ListView(
           children: <Widget>[
+            // Banner cards
             Container(
               height: 200.0,
               padding: EdgeInsets.symmetric(
@@ -48,156 +54,65 @@ class ForYou extends StatelessWidget {
                     child: BannerTile(
                       onTap: () {},
                       color: Colors.purple[200],
-                      image: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ839xFUO1W7b0oJYM0FbDDFaBrhxOqrP83mPbskdAIaAaym2tt',
-                      title: 'Ear Hustle',
-                      synopsis: 'Ear Hustle brings you the daily realities of life inside prison shared by those living it, and stories from the outside, post-incarceration.',
+                      image:
+                          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQVyDAGxXo0sRL6yC-FEoO4PJlT4DY4dfm1_x85EJXj-Dn_3M',
+                      title: 'Philosophize This!',
+                      synopsis:
+                          'Beginner friendly if listened to in order! For anyone interested in an educational podcast about philosophy where you don\'t need to be a graduate-level philosopher to understand it. In chronological order, the thinkers and ideas that forged the world we live in are broken down and explained.',
                     ),
                   ),
                   BannerTile(
                     onTap: () {},
                     color: Color(0xFFFBE6A7),
-                    image: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTOyakdJqxziOy1PQC-FCUYFZ2OFFn00LJYofecw2WX8KrbZ5Q',
+                    image:
+                        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTOyakdJqxziOy1PQC-FCUYFZ2OFFn00LJYofecw2WX8KrbZ5Q',
                     title: 'The Good News Podcast',
-                    synopsis: 'The Good News Podcast is your daily reminder that not all news is bad, produced by Colleen and Neil. 👁',
+                    synopsis:
+                        'The Good News Podcast is your daily reminder that not all news is bad, produced by Colleen and Neil. 👁',
                   ),
                 ],
               ),
             ),
+            // Continue listening card
             Card(
               child: Column(
                 children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(10.0),
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                      horizontal: 15.0,
+                      vertical: 10.0,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
                           'Continue Listening',
                           style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
                           ),
                         ),
-                        FlatButton(
-                          onPressed: () {}, // no-op
-                          child: Text('View All'),
+                        LinkButton(
+                          onTap: () {}, //no-op
+                          label: 'View All',
                         ),
                       ],
                     ),
                   ),
                   Container(
-                    height: 170.0,
-                    margin: EdgeInsets.symmetric(
-                        vertical: 20.0, horizontal: 10.0),
-                    child: ListView(
+                    height: 180.0,
+                    padding: EdgeInsets.only(
+                      bottom: 15.0,
+                      left: 10.0,
+                      right: 10.0,
+                    ),
+                    child: ListView.separated(
                       scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Column(
-                            children: <Widget>[
-                              Image(
-                                height: 120.0,
-                                width: 120.0,
-                                image: NetworkImage(
-                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8V9mc_pL9b6-Lt7TKzYn-fb9mQI9YfcF53g0_WKHKkUIn8qc'
-                                ),
-                              ),
-                              Container(
-                                height: 37.0,
-                                width: 115.0,
-                                color: Color(0xFFc0b3c2),
-                                child: Text(
-                                  'Off The Vine with Kaitlyn Bristowe',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 115.0,
-                                child: LinearProgressIndicator(
-                                  value: 0.3,
-                                  backgroundColor: Colors.purple[50],
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.purple[200]),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Column(
-                            children: <Widget>[
-                              Image(
-                                height: 120.0,
-                                width: 120.0,
-                                image: NetworkImage(
-                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVP184m-gDYYTWu_Z1gCjaKPwcMrOoyXjDN9Vu5xBiFtp0Bys'
-                                ),
-                              ),
-                              Container(
-                                height: 37.0,
-                                width: 115.0,
-                                color: Color(0xFFc0b3c2),
-                                child: Text(
-                                  'Monday Morning Podcast',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 115.0,
-                                child: LinearProgressIndicator(
-                                  value: 0.7,
-                                  backgroundColor: Colors.purple[50],
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.purple[200]),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 5.0),
-                          child: Column(
-                            children: <Widget>[
-                              Image(
-                                height: 120.0,
-                                width: 120.0,
-                                image: NetworkImage(
-                                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOBPc8TQZS8dxe_bxHqw-EiNb1o1z_3NRKpdCg6DFX7HoJdIM'
-                                ),
-                              ),
-                              Container(
-                                height: 37.0,
-                                width: 115.0,
-                                color: Color(0xFFc0b3c2),
-                                child: Text(
-                                  'Waveform: The MKBHD Podcast',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: 115.0,
-                                child: LinearProgressIndicator(
-                                  value: 0.1,
-                                  backgroundColor: Colors.purple[50],
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.purple[200]),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                      itemCount: mockDataProvider.getContinueListeningLength(),
+                      separatorBuilder: (BuildContext context, int index) =>
+                          SizedBox(width: 5.0),
+                      itemBuilder: (BuildContext context, int index) {
+                        return mockDataProvider.popContinueListening();
+                      },
                     ),
                   ),
                 ],
@@ -237,9 +152,7 @@ class ForYou extends StatelessWidget {
                                     height: 120.0,
                                     width: 100.0,
                                     image: NetworkImage(
-                                        'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSA4UAGuB3gvriNe_BGPDBGN8lyzquSFzbicYEesg6EqsswVjT5'
-                                    )
-                                ),
+                                        'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSA4UAGuB3gvriNe_BGPDBGN8lyzquSFzbicYEesg6EqsswVjT5')),
                                 Container(
                                   height: 37.0,
                                   width: 115.0,
@@ -272,8 +185,7 @@ class ForYou extends StatelessWidget {
                                   height: 120.0,
                                   width: 120.0,
                                   image: NetworkImage(
-                                      'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQPXsNEWh1HaLwWDRYzZrafOrBhLCB6z-fiPCgJcaLKS53n-lo'
-                                  ),
+                                      'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQPXsNEWh1HaLwWDRYzZrafOrBhLCB6z-fiPCgJcaLKS53n-lo'),
                                 ),
                                 Container(
                                   height: 37.0,
@@ -307,8 +219,7 @@ class ForYou extends StatelessWidget {
                                   height: 120.0,
                                   width: 120.0,
                                   image: NetworkImage(
-                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvwsoU6E59qLDDTdQ31q13aw3yICENA0V_MCFqQNZTNpcJrcmj'
-                                  ),
+                                      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvwsoU6E59qLDDTdQ31q13aw3yICENA0V_MCFqQNZTNpcJrcmj'),
                                 ),
                                 Container(
                                   height: 37.0,
@@ -348,7 +259,7 @@ class ForYou extends StatelessWidget {
           type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          backgroundColor: Colors.purple[50],
+          backgroundColor: PRIMARY_COLOR,
           selectedItemColor: Colors.black,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
