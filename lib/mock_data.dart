@@ -95,6 +95,33 @@ class MockData {
     ),
   ];
 
+  final _trendingTiles = [
+    ListTile(
+      leading: Image.network('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSA4UAGuB3gvriNe_BGPDBGN8lyzquSFzbicYEesg6EqsswVjT5'),
+      title: Text('Joe Rogan Experience'),
+    ),
+    ListTile(
+      leading: Image.network('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQohyX0X3gEmIhndOXa5CymYAgDKz5ns7lxUfO0niGVN4vJqps'),
+      title: Text('The Intelligence'),
+    ),
+    ListTile(
+      leading: Image.network('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQvWRhYcJbWw4w6a9CFskUnb0-McmhM1QTyfq0omvEuVZyrA6Y'),
+      title: Text('TED Talks Daily'),
+    ),
+    ListTile(
+      leading: Image.network('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSZjUqEeWy3uxifXhfyI4zLCpvbxU5ZLllhjyE_sThNAwHT40I'),
+      title: Text('Freakonomics Radio'),
+    ),
+    ListTile(
+      leading: Image.network('https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRycwVO2CUYCsMjJXLdvslRbQAuK73CWRp8CKGRvVzymaUGXD70'),
+      title: Text('Today in Focus'),
+    ),
+    ListTile(
+      leading: Image.network('https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSjX_jkYkYpDyXvS4MlOPv9zUByWgTGUGwCUo-DH40OajeDcjQ'),
+      title: Text('The One In Which...'),
+    )
+  ];
+
   int getContinueListeningLength() {
     return _continueListening.length;
   }
@@ -117,5 +144,21 @@ class MockData {
 
   BannerTile popBannerTile() {
     return _bannerTiles.removeLast();
+  }
+
+  List<Cover> getContinueListening() {
+    return _continueListening;
+  }
+
+  List<Cover> getForYou() {
+    return _forYou;
+  }
+
+  List<BannerTile> getBannerTiles() {
+    return _bannerTiles;
+  }
+
+  List getTrendingTiles() {
+    return _trendingTiles;
   }
 }
