@@ -51,10 +51,13 @@ class Home extends StatelessWidget {
               forYou: mockDataProvider.getForYou(),
             ),
             TrendingTabView(
-              bannerTiles: mockDataProvider.getBannerTiles(),
+              bannerTiles: mockDataProvider.trendingBannerTiles(),
               bodyTiles: mockDataProvider.getTrendingTiles(),
             ),
-            GenresTabView(),
+            GenresTabView(
+              topCategories: mockDataProvider.getForYou(),
+              genres: mockDataProvider.getGenreTiles(),
+            ),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(

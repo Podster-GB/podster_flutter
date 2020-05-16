@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:podster_flutter/components/banner_tile.dart';
+import 'package:podster_flutter/components/genre_tile.dart';
 
 import 'components/cover.dart';
 
@@ -95,7 +96,7 @@ class MockData {
     ),
   ];
 
-  final _trendingTiles = [
+  final List<ListTile> _trendingTiles = [
     ListTile(
       leading: Image.network('https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSA4UAGuB3gvriNe_BGPDBGN8lyzquSFzbicYEesg6EqsswVjT5'),
       title: Text('Joe Rogan Experience'),
@@ -121,6 +122,70 @@ class MockData {
       title: Text('The One In Which...'),
     )
   ];
+
+  final List<GenreTile> _genres = [
+    GenreTile(
+      onTap: () {},
+      label: 'Art',
+      icon: Icons.palette,
+    ),
+    GenreTile(
+      onTap: () {},
+      label: 'Business',
+      icon: Icons.show_chart,
+    ),
+    GenreTile(
+      onTap: () {},
+      label: 'Comedy',
+      icon: Icons.child_care,
+    ),
+    GenreTile(
+      onTap: () {},
+      label: 'Economics',
+      icon: Icons.timeline,
+    ),
+    GenreTile(
+      onTap: () {},
+      label: 'Education',
+      icon: Icons.chrome_reader_mode,
+    ),
+    GenreTile(
+      onTap: () {},
+      label: 'Fitness',
+      icon: Icons.fitness_center,
+    ),
+  ];
+
+  List<BannerTile> _trendingBannerTiles = [
+    BannerTile(
+      onTap: () {},
+      color: Color(0xFFE8D22F),
+      title: 'No Such Thing As A Fish',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ20A7_9_SoBSV9rgRGPY_b-YRrI2EHWUbOo9ldibBgOa0MSGOa',
+      synopsis: 'A podcast from the QI offices in which the writers of the hit BBC show huddle around a microphone and discuss '
+          'the best things they\'ve found out this week. Hosted by Dan Schreiber (@schreiberland) with James Harkin (@jamesharkin), '
+          'Andrew Hunter Murray (@andrewhunterm), and Anna Ptaszynski (#GetAnnaOnTwitter)',
+    ),
+    BannerTile(
+      onTap: () {},
+      color: Color(0xFFFF6A56),
+      title: 'Today in Focus',
+      image: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRycwVO2CUYCsMjJXLdvslRbQAuK73CWRp8CKGRvVzymaUGXD70',
+      synopsis: 'Hosted by Anushka Asthana, Today in Focus brings you closer to Guardian journalism. Combining personal storytelling with '
+          'insightful analysis, this podcast takes you behind the headlines for a deeper understanding of the news, every weekday',
+    ),
+    BannerTile(
+      onTap: () {},
+      color: Color(0xFF4C8687),
+      title: 'Secret Leaders',
+      image: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQYfqMtgb5cTNPjnMeuulLXBxoXPGX4Y6L74ufzNtFDdJmG7Cc',
+      synopsis: 'Secret Leaders promises a collection of contrasting, irreverent interviews with the high-flying CEOs and '
+          'forward-thinking founders of some of the most successful businesses in the UK and the US right now, including Martha '
+          'Lane Fox (Lastminute.com), Anne Boden (Starling Bank), Jed McCaleb (Ripple, Mt.Gox and Stellar) and Jason Calacanis (first Uber investor).',
+    ),
+  ];
+
+  List<BannerTile> trendingBannerTiles() => _trendingBannerTiles;
 
   int getContinueListeningLength() {
     return _continueListening.length;
@@ -158,7 +223,11 @@ class MockData {
     return _bannerTiles;
   }
 
-  List getTrendingTiles() {
+  List<ListTile> getTrendingTiles() {
     return _trendingTiles;
+  }
+
+  List<GenreTile> getGenreTiles() {
+    return _genres;
   }
 }

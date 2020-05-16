@@ -56,7 +56,7 @@ class BannerTile extends StatelessWidget {
                       margin: EdgeInsets.only(left: 20.0),
                       child: Text(
                         synopsis
-                            .split(RegExp('[.!?\\-]'))[0], // matches first line
+                            .split(RegExp('[.!?\\-]'))[0] + '...', // matches first line
                         softWrap: true,
                         style: TextStyle(
                           fontSize: 12.0,

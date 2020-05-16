@@ -26,6 +26,7 @@ class Cover extends StatelessWidget {
         ),
         child: Column(
           children: <Widget>[
+            // Show progress bar
             if(progressValue != null) ...[
               ClipRRect(
                 borderRadius: BorderRadius.only(
@@ -87,34 +88,3 @@ class Cover extends StatelessWidget {
     );
   }
 }
-
-//Column(
-//children: <Widget>[
-//Image(
-//height: 120.0,
-//width: 120.0,
-//image: NetworkImage(imageUrl),
-//),
-//Container(
-//height: 37.0,
-//width: 115.0,
-//color: Color(0xFFc0b3c2),
-//child: Text(
-//title,
-//textAlign: TextAlign.center,
-//style: TextStyle(
-//color: Colors.white,
-//),
-//),
-//),
-//Container(
-//width: 115.0,
-//child: LinearProgressIndicator(
-//value: progressValue == null ? 0.0 : progressValue,
-//backgroundColor: Colors.purple[50],
-//valueColor: AlwaysStoppedAnimation<Color>(
-//Colors.purple[200]),
-//),
-//),
-//],
-//);
