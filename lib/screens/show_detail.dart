@@ -6,6 +6,11 @@ class ShowDetail extends StatelessWidget {
   final String showName = 'Philosophize This!';
   final String showAuthor = 'Stephen West';
   final String showGenre = 'Philosophy';
+  final String showSynopsis = 'Beginner friendly if listened to in order! '
+      'For anyone interested in an educational podcast about philosophy where '
+      'you don\'t need to be a graduate-level philosopher to understand it. '
+      'In chronological order, the thinkers and ideas that forged the world '
+      'we live in are broken down and explained.';
 
   @override
   Widget build(BuildContext context) {
@@ -85,11 +90,55 @@ class ShowDetail extends StatelessWidget {
               ],
             ),
           ),
-          Center(
-            child: Text('Mid'),
+          Container(
+            padding: EdgeInsets.all(20.0),
+            child: Text(
+              showSynopsis,
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+            ),
           ),
-          Center(
-            child: Text('Bot'),
+          Container(
+            padding: EdgeInsets.fromLTRB(15.0, 0, 15.0, 15.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    'In This Podcast',
+                    style: TextStyle(
+                      fontSize: 22.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 5.0, 5.0, 0),
+                      height: 35.0,
+                      width: 95.0,
+                      child: TextButton(
+                        onTap: () {},
+                        label: showGenre,
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 5.0, 5.0, 0),
+                      height: 35.0,
+                      width: 95.0,
+                      child: TextButton(
+                        onTap: () {},
+                        label: 'Education',
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
