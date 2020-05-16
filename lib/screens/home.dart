@@ -10,7 +10,9 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MockData mockDataProvider = MockData();
+    final MockData mockDataProvider = MockData(context: context);
+    mockDataProvider.init();
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
