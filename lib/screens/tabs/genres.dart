@@ -32,17 +32,14 @@ class GenresTabView extends StatelessWidget {
             itemCount: topCategories.length,
           ),
         ),
-        Container(
-          height: 256.0,
-          child: GridView.count(
-            // https://github.com/flutter/flutter/issues/18503
-            primary: false, // disable nested scrolling
-            crossAxisCount: 2,
-            // excess horizontal margin, need to fix this
-            childAspectRatio: MediaQuery.of(context).size.width /
-                (MediaQuery.of(context).size.height / 4),
-            children: genres,
-          ),
+        GridView.count(
+          shrinkWrap: true,
+          physics: ScrollPhysics(),
+          crossAxisCount: 2,
+          // excess horizontal margin, need to fix this
+          childAspectRatio: MediaQuery.of(context).size.width /
+              (MediaQuery.of(context).size.height / 4),
+          children: genres,
         ),
       ],
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:podster_flutter/components/banner_tile.dart';
 import 'package:podster_flutter/components/genre_tile.dart';
+import 'package:podster_flutter/podcast.dart';
 
 import 'components/cover.dart';
 
@@ -18,6 +19,65 @@ class MockData {
 
   MockData({@required this.context});
 
+  final List<Podcast> podcasts = [
+    Podcast(
+      title: 'Off The Vine with Kaitlyn Bristowe',
+      synopsis: 'Ready to shake things up? Kaitlyn is creating a space where girls (and gents) can feel empowered ' + 
+      'to be themselves... because there\'s more to life than Instagram, right? Kaitlyn isn\'t afraid to keep it real ' + 
+      'as she talks with her amazing guests! Get ready for lots of laughs, candid convo, taboo topics, unfiltered advice, ' + 
+      'and wine... lots of wine!',
+      imageUrl:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8V9mc_pL9b6-Lt7TKzYn-fb9mQI9YfcF53g0_WKHKkUIn8qc',
+      genre: 'Lifestyle',
+    ),
+    Podcast(
+      title: 'Monday Morning Podcast',
+      synopsis: 'Bill Burr rants about relationship advice, sports and the Illuminati.',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVP184m-gDYYTWu_Z1gCjaKPwcMrOoyXjDN9Vu5xBiFtp0Bys',
+      genre: 'Lifestyle',
+    ),
+    Podcast(
+      title: 'GABA',
+      synopsis: 'Next generation meditation that unfolds like a beautiful dream. @gabapodcast // Instagram See acast.com/privacy for privacy and opt-out information.',
+      imageUrl: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQnaZITezlX9XGJYxRBPO3ZN9We-j-S60fF1olFDnnelAkBAiPg',
+      genre: 'Health',
+    ),
+    Podcast(
+      title: 'The Intelligence',
+      synopsis: 'Get a daily burst of global illumination from The Economist’s worldwide network of correspondents as they dig past the headlines to get to the stories ' +
+      'beneath—and to stories that aren’t making headlines, but should be.',
+      imageUrl: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQohyX0X3gEmIhndOXa5CymYAgDKz5ns7lxUfO0niGVN4vJqps',
+      genre: 'News',
+    ),
+    Podcast(
+      title: 'Joe Rogan Experience',
+      synopsis: 'The podcast of Comedian Joe Rogan..',
+      imageUrl: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSA4UAGuB3gvriNe_BGPDBGN8lyzquSFzbicYEesg6EqsswVjT5',
+      genre: 'Entertainment',
+    ),
+    Podcast(
+      title: 'Naval',
+      synopsis: 'Naval on wealth and happiness. On Twitter at @naval.',
+      imageUrl: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQBdVtsi7BSmC7NtOf4aASKngwnofd4EvNAIt_096X-9sdtvsl6',
+      genre: 'Self-Improvement',
+    ),
+    Podcast(
+      title: 'Today in Focus',
+      synopsis: 'Hosted by Anushka Asthana, Today in Focus brings you closer to Guardian journalism. Combining personal storytelling ' +
+      'with insightful analysis, this podcast takes you behind the headlines for a deeper understanding of the news, every weekday',
+      imageUrl: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRycwVO2CUYCsMjJXLdvslRbQAuK73CWRp8CKGRvVzymaUGXD70',
+      genre: 'News',
+    ),
+  ];
+
+  List<Podcast> getTrendingThisWeek() {
+    return podcasts.where((podcast) => podcast.isTrending()).toList();
+  }
+
+  List<Podcast> getTrendingThisMonth() {
+    return podcasts.where((podcast) => !podcast.isTrending()).toList();
+  }
+
   /// Convenience method for invoking all of the following methods:
   /// ```
   /// buildBannerTiles();
@@ -28,12 +88,17 @@ class MockData {
   /// buildTrendingTiles();
   /// ```
   void init() {
-    buildBannerTiles();
     buildContinueListening();
     buildForYou();
     buildGenre();
-    buildTrendingBannerTiles();
     buildTrendingTiles();
+
+    // Play some podcasts a few times to get them to trend.
+    for(int i=0; i<6; i++) {
+      podcasts[2].play();
+      podcasts[podcasts.length-1].play();
+      podcasts[4].play();
+    }
   }
 
   void buildContinueListening() {
@@ -110,31 +175,6 @@ class MockData {
     ];
   }
 
-  void buildBannerTiles() {
-    _bannerTiles = [
-      BannerTile(
-        onTap: () {
-          Navigator.pushNamed(context, '/show_detail');
-        },
-        color: Colors.purple[200],
-        image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQVyDAGxXo0sRL6yC-FEoO4PJlT4DY4dfm1_x85EJXj-Dn_3M',
-        title: 'Philosophize This!',
-        synopsis:
-        'Beginner friendly if listened to in order! For anyone interested in an educational podcast about philosophy where you don\'t need to be a graduate-level philosopher to understand it. In chronological order, the thinkers and ideas that forged the world we live in are broken down and explained.',
-      ),
-      BannerTile(
-        onTap: () {},
-        color: Color(0xFFFBE6A7),
-        image:
-        'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTOyakdJqxziOy1PQC-FCUYFZ2OFFn00LJYofecw2WX8KrbZ5Q',
-        title: 'The Good News Podcast',
-        synopsis:
-        'The Good News Podcast is your daily reminder that not all news is bad, produced by Colleen and Neil. 👁',
-      ),
-    ];
-  }
-
   void buildTrendingTiles() {
     _trendingTiles = [
       ListTile(
@@ -195,37 +235,6 @@ class MockData {
         onTap: () {},
         label: 'Fitness',
         icon: Icons.fitness_center,
-      ),
-    ];
-  }
-
-  void buildTrendingBannerTiles() {
-    _trendingBannerTiles = [
-      BannerTile(
-        onTap: () {},
-        color: Color(0xFFE8D22F),
-        title: 'No Such Thing As A Fish',
-        image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ20A7_9_SoBSV9rgRGPY_b-YRrI2EHWUbOo9ldibBgOa0MSGOa',
-        synopsis: 'A podcast from the QI offices in which the writers of the hit BBC show huddle around a microphone and discuss '
-            'the best things they\'ve found out this week. Hosted by Dan Schreiber (@schreiberland) with James Harkin (@jamesharkin), '
-            'Andrew Hunter Murray (@andrewhunterm), and Anna Ptaszynski (#GetAnnaOnTwitter)',
-      ),
-      BannerTile(
-        onTap: () {},
-        color: Color(0xFFFF6A56),
-        title: 'Today in Focus',
-        image: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRycwVO2CUYCsMjJXLdvslRbQAuK73CWRp8CKGRvVzymaUGXD70',
-        synopsis: 'Hosted by Anushka Asthana, Today in Focus brings you closer to Guardian journalism. Combining personal storytelling with '
-            'insightful analysis, this podcast takes you behind the headlines for a deeper understanding of the news, every weekday',
-      ),
-      BannerTile(
-        onTap: () {},
-        color: Color(0xFF4C8687),
-        title: 'Secret Leaders',
-        image: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQYfqMtgb5cTNPjnMeuulLXBxoXPGX4Y6L74ufzNtFDdJmG7Cc',
-        synopsis: 'Secret Leaders promises a collection of contrasting, irreverent interviews with the high-flying CEOs and '
-            'forward-thinking founders of some of the most successful businesses in the UK and the US right now, including Martha '
-            'Lane Fox (Lastminute.com), Anne Boden (Starling Bank), Jed McCaleb (Ripple, Mt.Gox and Stellar) and Jason Calacanis (first Uber investor).',
       ),
     ];
   }

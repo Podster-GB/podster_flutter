@@ -20,8 +20,8 @@ class ReelBanner extends StatelessWidget {
         itemCount: tiles.length,
         separatorBuilder: (BuildContext context, int index) =>
             SizedBox(width: 5.0),
-        itemBuilder: (BuildContext context, int index) =>
-        tiles[index],
+        itemBuilder: (BuildContext context, int index) => null
+        // tiles[index],
       ),
     );
   }

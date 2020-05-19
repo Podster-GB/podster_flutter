@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:podster_flutter/components/banner_tile.dart';
+import 'package:podster_flutter/components/list_item.dart';
+import 'package:podster_flutter/components/show_item.dart';
 import 'package:podster_flutter/constants.dart';
 import 'package:podster_flutter/screens/tabs/for_you.dart';
 import 'package:podster_flutter/screens/tabs/trending.dart';
 import 'package:podster_flutter/screens/tabs/genres.dart';
 
 import '../mock_data.dart';
+import '../podcast.dart';
 
 class Home extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final MockData mockDataProvider = MockData(context: context);
     mockDataProvider.init();
+    List<Podcast> trendingThisWeek = mockDataProvider.getTrendingThisWeek();
+    List<Podcast> trendingThisMonth = mockDataProvider.getTrendingThisMonth();
 
     return DefaultTabController(
       length: 3,
@@ -53,8 +58,20 @@ class Home extends StatelessWidget {
               forYou: mockDataProvider.getForYou(),
             ),
             TrendingTabView(
-              bannerTiles: mockDataProvider.trendingBannerTiles(),
-              bodyTiles: mockDataProvider.getTrendingTiles(),
+              popularThisWeek: List<BannerTile>.generate(
+                trendingThisWeek.length,
+                (i) => BannerTile(
+                  onTap: () {},
+                  show: trendingThisWeek[i],
+                ),
+              ),
+              popularThisMonth: List<ListItem>.generate(
+                trendingThisMonth.length,
+                (i) => ShowItem(
+                  imageUrl: trendingThisMonth[i].imageUrl,
+                  title: trendingThisMonth[i].title,
+                ),
+              ),
             ),
             GenresTabView(
               topCategories: mockDataProvider.getForYou(),

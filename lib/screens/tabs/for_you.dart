@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:podster_flutter/components/banner_tile.dart';
 import 'package:podster_flutter/components/cover.dart';
 import 'package:podster_flutter/components/link_button.dart';
-import 'package:podster_flutter/components/reel_banner.dart';
 
 class ForYouTabView extends StatelessWidget {
   final List<BannerTile> bannerTiles;
@@ -19,10 +18,6 @@ class ForYouTabView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        // Banner cards
-        ReelBanner(
-          tiles: bannerTiles,
-        ),
         // Continue listening card
         Card(
           child: Column(
