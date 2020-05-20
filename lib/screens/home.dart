@@ -17,6 +17,7 @@ class Home extends StatelessWidget {
     mockDataProvider.init();
     List<Podcast> trendingThisWeek = mockDataProvider.getTrendingThisWeek();
     List<Podcast> trendingThisMonth = mockDataProvider.getTrendingThisMonth();
+    List<Podcast> forYouHighlights = mockDataProvider.getForYouHighlights();
 
     return DefaultTabController(
       length: 3,
@@ -53,7 +54,13 @@ class Home extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             ForYouTabView(
-              bannerTiles: mockDataProvider.getBannerTiles(),
+              highlights: List<BannerTile>.generate(
+                forYouHighlights.length,
+                (i) => BannerTile(
+                  onTap: () {},
+                  show: forYouHighlights[i],
+                ),
+              ),
               continueListening: mockDataProvider.getContinueListening(),
               forYou: mockDataProvider.getForYou(),
             ),

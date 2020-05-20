@@ -12,7 +12,6 @@ class MockData {
 
   List<Cover> _continueListening;
   List<Cover> _forYou;
-  List<BannerTile> _bannerTiles;
   List<ListTile> _trendingTiles;
   List<GenreTile> _genres;
   List<BannerTile> _trendingBannerTiles;
@@ -102,6 +101,10 @@ class MockData {
 
   List<Podcast> getTrendingThisMonth() {
     return podcasts.where((podcast) => !podcast.isTrending()).toList();
+  }
+
+  List<Podcast> getForYouHighlights() {
+    return podcasts.where((podcast) => podcast.genre == 'News').toList();
   }
 
   /// Convenience method for invoking all of the following methods:
@@ -275,15 +278,9 @@ class MockData {
 
   Cover popForYou() => _forYou.removeLast();
 
-  int getBannerTilesLength() => _bannerTiles.length;
-
-  BannerTile popBannerTile() => _bannerTiles.removeLast();
-
   List<Cover> getContinueListening() => _continueListening;
 
   List<Cover> getForYou() => _forYou;
-
-  List<BannerTile> getBannerTiles() => _bannerTiles;
 
   List<ListTile> getTrendingTiles() => _trendingTiles;
 

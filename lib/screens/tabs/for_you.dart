@@ -4,20 +4,35 @@ import 'package:podster_flutter/components/cover.dart';
 import 'package:podster_flutter/components/link_button.dart';
 
 class ForYouTabView extends StatelessWidget {
-  final List<BannerTile> bannerTiles;
+  final List<BannerTile> highlights;
   final List<Cover> continueListening;
   final List<Cover> forYou;
 
-  ForYouTabView({
-    @required this.bannerTiles,
-    @required this.continueListening,
-    @required this.forYou
-  });
+  ForYouTabView(
+      {@required this.highlights,
+      @required this.continueListening,
+      @required this.forYou});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
+        // Banner cards
+        Container(
+          height: 180.0,
+          padding: EdgeInsets.all(15.0),
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            physics: ScrollPhysics(),
+            itemCount: highlights.length,
+            separatorBuilder: (context, index) => SizedBox(
+              width: 5.0,
+            ),
+            itemBuilder: (context, index) =>
+                highlights[index].buildTile(context),
+          ),
+        ),
         // Continue listening card
         Card(
           child: Column(
