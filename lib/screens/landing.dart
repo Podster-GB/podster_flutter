@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:podster_flutter/components/msg_alert.dart';
 import 'package:podster_flutter/components/text_button.dart';
 import 'package:podster_flutter/components/link_button.dart';
 
@@ -8,6 +9,7 @@ class Landing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MessageAlert alert = MessageAlert(context);
     return Scaffold(
       body: Center(
         child: Column(
@@ -70,20 +72,9 @@ class Landing extends StatelessWidget {
                   LinkButton(
                     label: 'Don\'t have an account? Sign up now!',
                     onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (_) => SimpleDialog(
-                          title: Text('Feature Not Available'),
-                          children: <Widget>[
-                            SimpleDialogOption(
-                              onPressed: () {},
-                              child: const Text('Code: not_impl'),
-                            ),
-                          ],
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
-                        ),
+                      alert.build(
+                        title: 'Authentication not supported',
+                        body: 'Click any sign in button to gain access.',
                       );
                     },
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:podster_flutter/components/msg_alert.dart';
 import 'package:podster_flutter/components/text_button.dart';
 import 'package:podster_flutter/constants.dart';
 
@@ -9,14 +10,16 @@ class ShowDetail extends StatelessWidget {
   final String showSynopsis;
   final String showImageUrl;
 
-  ShowDetail({
-    @required this.showName, @required this.showAuthor,
-    @required this.showGenre, @required this.showSynopsis,
-    @required this.showImageUrl
-  });
+  ShowDetail(
+      {@required this.showName,
+      @required this.showAuthor,
+      @required this.showGenre,
+      @required this.showSynopsis,
+      @required this.showImageUrl});
 
   @override
   Widget build(BuildContext context) {
+    final MessageAlert alert = MessageAlert(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: PRIMARY_COLOR,
@@ -28,7 +31,10 @@ class ShowDetail extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(left: 15.0, top: 15.0,),
+                margin: EdgeInsets.only(
+                  left: 15.0,
+                  top: 15.0,
+                ),
                 child: Image.network(showImageUrl),
                 width: 140.0,
               ),
@@ -79,13 +85,23 @@ class ShowDetail extends StatelessWidget {
                   width: 120.0,
                   margin: EdgeInsets.only(right: 55.0),
                   child: TextButton(
-                    onTap: () {},
+                    onTap: () {
+                      alert.build(
+                        title: 'Sorry',
+                        body: 'Subscribing to podcasts not currently supported.',
+                      );
+                    },
                     label: 'Subscribe',
                   ),
                 ),
                 Text('Download Episodes'),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    alert.build(
+                      title: 'Sorry',
+                      body: 'Downloading episodes not currently supported.',
+                    );
+                  },
                   color: ACCENT_COLOR,
                   icon: Icon(Icons.file_download),
                 ),
