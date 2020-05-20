@@ -68,6 +68,32 @@ class MockData {
       imageUrl: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRycwVO2CUYCsMjJXLdvslRbQAuK73CWRp8CKGRvVzymaUGXD70',
       genre: 'News',
     ),
+    Podcast(
+      title: 'Waveform: The MKBHD Podcast',
+      synopsis: 'A tech podcast for the gadget lovers and tech heads among us from the mind of Marques Brownlee, better known as MKBHD. ' + 
+      'MKBHD has made a name for himself on YouTube reviewing everything from the newest smartphones to cameras to electric cars. Pulling from ' + 
+      'over 10 years of experience covering the tech industry, MKBHD will keep you informed and entertained as he takes a deep dive into the latest ' + 
+      'and greatest in tech and what deserves your hard earned cash. New episodes every other week. Link to survey: https://bit.ly/2EcYbu4',
+      imageUrl:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOBPc8TQZS8dxe_bxHqw-EiNb1o1z_3NRKpdCg6DFX7HoJdIM',
+      genre: 'Tech',
+    ),
+    Podcast(
+      title: 'Business Wars',
+      synopsis: 'Netflix vs. HBO. Nike vs. Adidas. Business is war. Sometimes the prize is your wallet or your attention. ' + 
+      'Sometimes, it’s just the fun of beating the other guy. The outcome of these battles shapes what we buy and how we live.' + 
+      ' Business Wars gives you the unauthorized, real story of what drives these companies and their leaders, inventors, investors ' + 
+      'and executives to new heights -- or to ruin. Hosted by David Brown, former anchor of Marketplace. From Wondery, the network ' + 
+      'behind Dirty John and American History Tellers.',
+      imageUrl: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTJHAxRZ5vxm_2QpXvurSr5OfC6yjEbHWFiTzhsoJlbh8McRRU',
+      genre: 'Business',
+    ),
+    Podcast(
+      title: 'POLITICO Dispatch',
+      synopsis: 'We take you inside POLITICO, where journalists break news, work sources and pull back the curtain on politics and policy. Fast. Short. Daily.',
+      imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvwsoU6E59qLDDTdQ31q13aw3yICENA0V_MCFqQNZTNpcJrcmj',
+      genre: 'News',
+    ),
   ];
 
   List<Podcast> getTrendingThisWeek() {

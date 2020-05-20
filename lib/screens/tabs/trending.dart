@@ -6,7 +6,8 @@ class TrendingTabView extends StatelessWidget {
   final List<BannerTile> popularThisWeek;
   final List<ListItem> popularThisMonth;
 
-  TrendingTabView({@required this.popularThisWeek, @required this.popularThisMonth});
+  TrendingTabView(
+      {@required this.popularThisWeek, @required this.popularThisMonth});
 
   @override
   Widget build(BuildContext context) {
@@ -14,36 +15,52 @@ class TrendingTabView extends StatelessWidget {
       scrollDirection: Axis.vertical,
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text(
-            'Popular This Week',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Popular This Week',
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
             ),
           ),
           Container(
             height: 180.0,
-            child: ListView.builder(
+            padding: EdgeInsets.all(15.0),
+            child: ListView.separated(
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
               physics: ScrollPhysics(),
               itemCount: popularThisWeek.length,
-              itemBuilder: (context, index) => popularThisWeek[index].buildTile(context),
+              separatorBuilder: (context, index) => SizedBox(
+                width: 5.0,
+              ),
+              itemBuilder: (context, index) =>
+                  popularThisWeek[index].buildTile(context),
             ),
           ),
-          Text(
-            'Popular This Month',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              'Popular This Month',
+              style: TextStyle(
+                fontSize: 18.0,
+              ),
             ),
           ),
-          ListView.builder(
-            physics: ScrollPhysics(),
-            shrinkWrap: true,
-            itemCount: popularThisMonth.length,
-            itemBuilder: (context, index) => popularThisMonth[index].buildTile(context)
+          Container(
+            padding: EdgeInsets.only(top: 15.0),
+            child: ListView.separated(
+                physics: ScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: popularThisMonth.length,
+                separatorBuilder: (context, index) => SizedBox(
+                  height: 5.0,
+                ),
+                itemBuilder: (context, index) =>
+                    popularThisMonth[index].buildTile(context)),
           ),
         ],
       ),
