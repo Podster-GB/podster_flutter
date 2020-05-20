@@ -7,6 +7,9 @@ class Podcast {
   /// the name of this show.
   final String title;
 
+  /// the publishing entity, such as the person or company behind this show.
+  final String author;
+
   /// the description of this show.
   final String synopsis;
 
@@ -23,9 +26,8 @@ class Podcast {
   int _playCount = 0;
 
   Podcast({
-    this.title, this.synopsis,
-    this.imageUrl, this.genre,
-    this.episodes,
+    this.title, this.synopsis, this.author,
+    this.imageUrl, this.genre, this.episodes,
   });
 
   bool isTrending() {

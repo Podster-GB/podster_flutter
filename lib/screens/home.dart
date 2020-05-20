@@ -3,6 +3,7 @@ import 'package:podster_flutter/components/banner_tile.dart';
 import 'package:podster_flutter/components/list_item.dart';
 import 'package:podster_flutter/components/show_item.dart';
 import 'package:podster_flutter/constants.dart';
+import 'package:podster_flutter/screens/show_detail.dart';
 import 'package:podster_flutter/screens/tabs/for_you.dart';
 import 'package:podster_flutter/screens/tabs/trending.dart';
 import 'package:podster_flutter/screens/tabs/genres.dart';
@@ -57,7 +58,20 @@ class Home extends StatelessWidget {
               highlights: List<BannerTile>.generate(
                 forYouHighlights.length,
                 (i) => BannerTile(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ShowDetail(
+                          showName: forYouHighlights[i].title,
+                          showSynopsis: forYouHighlights[i].synopsis,
+                          showAuthor: forYouHighlights[i].author,
+                          showImageUrl: forYouHighlights[i].imageUrl,
+                          showGenre: forYouHighlights[i].genre,
+                        ),
+                      ),
+                    );
+                  },
                   show: forYouHighlights[i],
                 ),
               ),

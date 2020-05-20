@@ -3,14 +3,17 @@ import 'package:podster_flutter/components/text_button.dart';
 import 'package:podster_flutter/constants.dart';
 
 class ShowDetail extends StatelessWidget {
-  final String showName = 'Philosophize This!';
-  final String showAuthor = 'Stephen West';
-  final String showGenre = 'Philosophy';
-  final String showSynopsis = 'Beginner friendly if listened to in order! '
-      'For anyone interested in an educational podcast about philosophy where '
-      'you don\'t need to be a graduate-level philosopher to understand it. '
-      'In chronological order, the thinkers and ideas that forged the world '
-      'we live in are broken down and explained.';
+  final String showName;
+  final String showAuthor;
+  final String showGenre;
+  final String showSynopsis;
+  final String showImageUrl;
+
+  ShowDetail({
+    @required this.showName, @required this.showAuthor,
+    @required this.showGenre, @required this.showSynopsis,
+    @required this.showImageUrl
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +29,7 @@ class ShowDetail extends StatelessWidget {
             children: <Widget>[
               Container(
                 margin: EdgeInsets.only(left: 15.0, top: 15.0,),
-                child: Image.network(
-                    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQVyDAGxXo0sRL6yC-FEoO4PJlT4DY4dfm1_x85EJXj-Dn_3M'),
+                child: Image.network(showImageUrl),
                 width: 140.0,
               ),
               Expanded(

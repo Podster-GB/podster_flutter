@@ -25,6 +25,7 @@ class MockData {
       'to be themselves... because there\'s more to life than Instagram, right? Kaitlyn isn\'t afraid to keep it real ' + 
       'as she talks with her amazing guests! Get ready for lots of laughs, candid convo, taboo topics, unfiltered advice, ' + 
       'and wine... lots of wine!',
+      author: 'PodcastOne',
       imageUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8V9mc_pL9b6-Lt7TKzYn-fb9mQI9YfcF53g0_WKHKkUIn8qc',
       genre: 'Lifestyle',
@@ -32,12 +33,14 @@ class MockData {
     Podcast(
       title: 'Monday Morning Podcast',
       synopsis: 'Bill Burr rants about relationship advice, sports and the Illuminati.',
+      author: 'All Things Comedy | Wondery',
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVP184m-gDYYTWu_Z1gCjaKPwcMrOoyXjDN9Vu5xBiFtp0Bys',
       genre: 'Lifestyle',
     ),
     Podcast(
       title: 'GABA',
       synopsis: 'Next generation meditation that unfolds like a beautiful dream. @gabapodcast // Instagram See acast.com/privacy for privacy and opt-out information.',
+      author: 'Adam Martin',
       imageUrl: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQnaZITezlX9XGJYxRBPO3ZN9We-j-S60fF1olFDnnelAkBAiPg',
       genre: 'Health',
     ),
@@ -45,18 +48,21 @@ class MockData {
       title: 'The Intelligence',
       synopsis: 'Get a daily burst of global illumination from The Economist’s worldwide network of correspondents as they dig past the headlines to get to the stories ' +
       'beneath—and to stories that aren’t making headlines, but should be.',
+      author: 'The Economist',
       imageUrl: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQohyX0X3gEmIhndOXa5CymYAgDKz5ns7lxUfO0niGVN4vJqps',
       genre: 'News',
     ),
     Podcast(
       title: 'Joe Rogan Experience',
       synopsis: 'The podcast of Comedian Joe Rogan..',
+      author: 'Joe Rogan',
       imageUrl: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSA4UAGuB3gvriNe_BGPDBGN8lyzquSFzbicYEesg6EqsswVjT5',
       genre: 'Entertainment',
     ),
     Podcast(
       title: 'Naval',
       synopsis: 'Naval on wealth and happiness. On Twitter at @naval.',
+      author: 'Naval',
       imageUrl: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQBdVtsi7BSmC7NtOf4aASKngwnofd4EvNAIt_096X-9sdtvsl6',
       genre: 'Self-Improvement',
     ),
@@ -64,6 +70,7 @@ class MockData {
       title: 'Today in Focus',
       synopsis: 'Hosted by Anushka Asthana, Today in Focus brings you closer to Guardian journalism. Combining personal storytelling ' +
       'with insightful analysis, this podcast takes you behind the headlines for a deeper understanding of the news, every weekday',
+      author: 'The Guardian',
       imageUrl: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRycwVO2CUYCsMjJXLdvslRbQAuK73CWRp8CKGRvVzymaUGXD70',
       genre: 'News',
     ),
@@ -73,6 +80,7 @@ class MockData {
       'MKBHD has made a name for himself on YouTube reviewing everything from the newest smartphones to cameras to electric cars. Pulling from ' + 
       'over 10 years of experience covering the tech industry, MKBHD will keep you informed and entertained as he takes a deep dive into the latest ' + 
       'and greatest in tech and what deserves your hard earned cash. New episodes every other week. Link to survey: https://bit.ly/2EcYbu4',
+      author: 'Studio71',
       imageUrl:
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOBPc8TQZS8dxe_bxHqw-EiNb1o1z_3NRKpdCg6DFX7HoJdIM',
       genre: 'Tech',
@@ -84,12 +92,14 @@ class MockData {
       ' Business Wars gives you the unauthorized, real story of what drives these companies and their leaders, inventors, investors ' + 
       'and executives to new heights -- or to ruin. Hosted by David Brown, former anchor of Marketplace. From Wondery, the network ' + 
       'behind Dirty John and American History Tellers.',
+      author: 'Wondery',
       imageUrl: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTJHAxRZ5vxm_2QpXvurSr5OfC6yjEbHWFiTzhsoJlbh8McRRU',
       genre: 'Business',
     ),
     Podcast(
       title: 'POLITICO Dispatch',
       synopsis: 'We take you inside POLITICO, where journalists break news, work sources and pull back the curtain on politics and policy. Fast. Short. Daily.',
+      author: 'POLITICO',
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvwsoU6E59qLDDTdQ31q13aw3yICENA0V_MCFqQNZTNpcJrcmj',
       genre: 'News',
     ),
