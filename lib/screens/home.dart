@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:podster_flutter/components/banner_tile.dart';
+import 'package:podster_flutter/components/episode_item.dart';
+import 'package:podster_flutter/components/list_item.dart';
+import 'package:podster_flutter/components/show_item.dart';
 import 'package:podster_flutter/constants.dart';
+import 'package:podster_flutter/screens/show_detail.dart';
 import 'package:podster_flutter/screens/tabs/for_you.dart';
 import 'package:podster_flutter/screens/tabs/trending.dart';
 import 'package:podster_flutter/screens/tabs/genres.dart';
 
 import '../mock_data.dart';
+import '../podcast.dart';
 
 class Home extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    final MockData mockDataProvider = MockData();
+    final MockData mockDataProvider = MockData(context);
+    mockDataProvider.init();
+    List<Podcast> trendingThisWeek = mockDataProvider.getTrendingThisWeek();
+    List<Podcast> trendingThisMonth = mockDataProvider.getTrendingThisMonth();
+    List<Podcast> forYouHighlights = mockDataProvider.getForYouHighlights();
+
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -46,13 +56,57 @@ class Home extends StatelessWidget {
         body: TabBarView(
           children: <Widget>[
             ForYouTabView(
-              bannerTiles: mockDataProvider.getBannerTiles(),
+              highlights: List<BannerTile>.generate(
+                forYouHighlights.length,
+                (i) => BannerTile(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ShowDetail(
+                          showName: forYouHighlights[i].title,
+                          showSynopsis: forYouHighlights[i].synopsis,
+                          showAuthor: forYouHighlights[i].author,
+                          showImageUrl: forYouHighlights[i].imageUrl,
+                          showGenre: forYouHighlights[i].genre,
+                          showEpisodes: List<EpisodeItem>.generate(
+                            forYouHighlights[i].episodes.length,
+                            (j) => EpisodeItem(
+                              title: forYouHighlights[i].episodes[j].title,
+                              description:
+                                  forYouHighlights[i].episodes[j].description,
+                              pubDate: forYouHighlights[i].episodes[j].pubDate,
+                              duration:
+                                  forYouHighlights[i].episodes[j].duration,
+                              isPlayed:
+                                  forYouHighlights[i].episodes[j].isPlayed,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  show: forYouHighlights[i],
+                ),
+              ),
               continueListening: mockDataProvider.getContinueListening(),
               forYou: mockDataProvider.getForYou(),
             ),
             TrendingTabView(
-              bannerTiles: mockDataProvider.trendingBannerTiles(),
-              bodyTiles: mockDataProvider.getTrendingTiles(),
+              popularThisWeek: List<BannerTile>.generate(
+                trendingThisWeek.length,
+                (i) => BannerTile(
+                  onTap: () {},
+                  show: trendingThisWeek[i],
+                ),
+              ),
+              popularThisMonth: List<ListItem>.generate(
+                trendingThisMonth.length,
+                (i) => ShowItem(
+                  imageUrl: trendingThisMonth[i].imageUrl,
+                  title: trendingThisMonth[i].title,
+                ),
+              ),
             ),
             GenresTabView(
               topCategories: mockDataProvider.getForYou(),
