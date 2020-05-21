@@ -46,12 +46,12 @@ class Episode {
   final String duration;
   final String description;
   final bool isPlayed;
-  final int lastPausedTimestamp;
+  final double lastPausedTimestamp;
   
   Episode({
     this.title, this.mediaUrl,
     this.pubDate, this.duration,
-    this.description, this.isPlayed, 
+    this.description, this.isPlayed,
     this.lastPausedTimestamp
   });
 }

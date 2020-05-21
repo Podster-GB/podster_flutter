@@ -67,11 +67,3 @@ class TrendingTabView extends StatelessWidget {
     );
   }
 }
-
-// ListView.builder(
-//       itemCount: items.length,
-//       itemBuilder: (context, index) {
-//         final item = items[index];
-//         return item.buildTile(context);
-//       }
-//     );

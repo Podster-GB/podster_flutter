@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:podster_flutter/components/list_item.dart';
 import 'package:podster_flutter/components/msg_alert.dart';
 import 'package:podster_flutter/components/text_button.dart';
 import 'package:podster_flutter/constants.dart';
@@ -9,13 +10,16 @@ class ShowDetail extends StatelessWidget {
   final String showGenre;
   final String showSynopsis;
   final String showImageUrl;
+  final List<ListItem> showEpisodes;
 
-  ShowDetail(
-      {@required this.showName,
-      @required this.showAuthor,
-      @required this.showGenre,
-      @required this.showSynopsis,
-      @required this.showImageUrl});
+  ShowDetail({
+    @required this.showName,
+    @required this.showAuthor,
+    @required this.showGenre,
+    @required this.showSynopsis,
+    @required this.showImageUrl,
+    @required this.showEpisodes,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +51,7 @@ class ShowDetail extends StatelessWidget {
                       padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
                       child: Text(
                         showName,
-                        style: TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: SHOW_DETAIL_HEADING_TEXTSTYLE,
                       ),
                     ),
                     Padding(
@@ -88,7 +89,8 @@ class ShowDetail extends StatelessWidget {
                     onTap: () {
                       alert.build(
                         title: 'Sorry',
-                        body: 'Subscribing to podcasts not currently supported.',
+                        body:
+                            'Subscribing to podcasts not currently supported.',
                       );
                     },
                     label: 'Subscribe',
@@ -126,10 +128,7 @@ class ShowDetail extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
                   child: Text(
                     'In This Podcast',
-                    style: TextStyle(
-                      fontSize: 22.0,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: SHOW_DETAIL_HEADING_TEXTSTYLE,
                   ),
                 ),
                 Row(
@@ -156,6 +155,25 @@ class ShowDetail extends StatelessWidget {
                   ],
                 ),
               ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(15.0, 0, 15.0, 15.0),
+            child: Text(
+              'Episodes',
+              style: SHOW_DETAIL_HEADING_TEXTSTYLE,
+            ),
+          ),
+          Container(
+            child: ListView.separated(
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              itemCount: showEpisodes.length,
+              separatorBuilder: (context, index) => SizedBox(
+                height: 5.0,
+              ),
+              itemBuilder: (context, index) =>
+                  showEpisodes[index].buildTile(context),
             ),
           ),
         ],
