@@ -15,7 +15,7 @@ import '../podcast.dart';
 class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final MockData mockDataProvider = MockData(context: context);
+    final MockData mockDataProvider = MockData(context);
     mockDataProvider.init();
     List<Podcast> trendingThisWeek = mockDataProvider.getTrendingThisWeek();
     List<Podcast> trendingThisMonth = mockDataProvider.getTrendingThisMonth();

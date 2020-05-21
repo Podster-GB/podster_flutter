@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:podster_flutter/components/banner_tile.dart';
 import 'package:podster_flutter/components/genre_tile.dart';
+import 'package:podster_flutter/episode.dart';
 import 'package:podster_flutter/podcast.dart';
-
-import 'components/cover.dart';
+import 'package:podster_flutter/components/cover.dart';
 
 /// A source for generating UI components with dummy data. This class should
 /// only be used in the prototyping phase of development.
@@ -16,7 +16,7 @@ class MockData {
   List<GenreTile> _genres;
   List<BannerTile> _trendingBannerTiles;
 
-  MockData({@required this.context});
+  MockData(this.context);
 
   final List<Podcast> podcasts = [
     Podcast(
