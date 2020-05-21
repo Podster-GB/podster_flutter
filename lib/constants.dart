@@ -20,6 +20,7 @@ const broadcastIcon = FaIcon(FontAwesomeIcons.broadcastTower);
 const searchIcon = FaIcon(FontAwesomeIcons.search);
 const userIcon = FaIcon(FontAwesomeIcons.user);
 const threeDotsIcon = FontAwesomeIcons.ellipsisH;
+const playIcon = FontAwesomeIcons.play;
 
 const darkHeadlineTextstyle = TextStyle(
   color: darkHeadlineColor,

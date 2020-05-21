@@ -157,10 +157,57 @@ class DiscoverItem {
   DiscoverItem({this.title, this.subtitle});
 
   Widget build(BuildContext context) {
-    return Container(
-      height: 160.0,
-      width: 315.0,
-      color: darkAccentInactiveColor,
+    return SizedBox(
+      width: 290,
+      height: 250,
+      child: Stack(
+        children: <Widget>[
+          Container(
+            width: 290,
+            height: 250,
+            color: darkAccentInactiveColor,
+          ),
+          Container(
+            padding: EdgeInsets.all(25.0),
+            alignment: Alignment.topLeft,
+            child: Text(
+              title,
+              style: TextStyle(
+                color: darkHeadlineColor,
+                fontSize: 20.0,
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(25.0, 55.0, 5.0, 5.0),
+            alignment: Alignment.topLeft,
+            child: Text(
+              subtitle,
+              style: TextStyle(
+                color: darkHeadlineColor,
+                fontSize: 16.0,
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.bottomRight,
+            child: Container(
+              height: 40.0,
+              width: 40.0,
+              decoration: BoxDecoration(
+                color: darkAccentColor,
+              ),
+              child: IconButton(
+                onPressed: () => null,
+                icon: FaIcon(
+                  playIcon,
+                  color: darkHeadlineColor,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
