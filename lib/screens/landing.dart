@@ -46,36 +46,34 @@ class Landing extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  TextButton(
-                    label: 'Sign in with Email',
-                    onTap: () {
-                      Navigator.pushNamed(context, '/for_you');
-                    },
-                  ),
-                  TextButton(
-                    label: 'Sign in with Google',
-                    onTap: () {
-                      Navigator.pushNamed(context, '/for_you');
-                    },
-                  ),
-                  TextButton(
-                      label: 'Sign in with Facebook',
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    TextButton(
+                      label: 'Light Mode',
                       onTap: () {
                         Navigator.pushNamed(context, '/for_you');
-                      }),
-                  LinkButton(
-                    label: 'Don\'t have an account? Sign up now!',
-                    onTap: () {
-                      alert.build(
-                        title: 'Authentication not supported',
-                        body: 'Click any sign in button to gain access.',
-                      );
-                    },
-                  ),
-                ],
+                      },
+                    ),
+                    TextButton(
+                      label: 'Dark Mode',
+                      onTap: () {
+                        Navigator.pushNamed(context, '/discover');
+                      },
+                    ),
+                    LinkButton(
+                      label: 'Don\'t have an account? Sign up now!',
+                      onTap: () {
+                        alert.build(
+                          title: 'Authentication not supported',
+                          body: 'Click any sign in button to gain access.',
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
