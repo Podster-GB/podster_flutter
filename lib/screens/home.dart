@@ -70,7 +70,7 @@ class Home extends StatelessWidget {
                           showImageUrl: forYouHighlights[i].imageUrl,
                           showGenre: forYouHighlights[i].genre,
                           showEpisodes: List<EpisodeItem>.generate(
-                            forYouHighlights.length,
+                            forYouHighlights[i].episodes.length,
                             (j) => EpisodeItem(
                               title: forYouHighlights[i].episodes[j].title,
                               description:
