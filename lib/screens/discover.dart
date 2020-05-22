@@ -9,7 +9,9 @@ class Discover extends StatelessWidget {
   Widget build(BuildContext context) {
     MockData mockDataProvider = MockData(context);
     mockDataProvider.init();
-    List<Podcast> podcasts = mockDataProvider.getTrendingThisWeek();
+    List<Podcast> podcastsDiscover = mockDataProvider.getTrendingThisWeek();
+    List<Podcast> podcastsRecent = mockDataProvider.getTrendingThisMonth();
+    List<Podcast> podcastsTrending = mockDataProvider.getForYouHighlights();
 
     return Scaffold(
       backgroundColor: darkBackgroundColor,
@@ -39,14 +41,14 @@ class Discover extends StatelessWidget {
                 height: 180.0,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemCount: podcasts.length,
+                  itemCount: podcastsDiscover.length,
                   separatorBuilder: (context, index) => SizedBox(
                     width: 5.0,
                   ),
                   itemBuilder: (context, index) => DarkCoverItem(
-                    title: podcasts[index].title,
-                    subtitle: podcasts[index].author,
-                    imageUrl: podcasts[index].imageUrl,
+                    title: podcastsDiscover[index].title,
+                    subtitle: podcastsDiscover[index].author,
+                    imageUrl: podcastsDiscover[index].imageUrl,
                   ).build(context),
                 ),
               ),
@@ -80,14 +82,14 @@ class Discover extends StatelessWidget {
                 height: 180.0,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemCount: podcasts.length,
+                  itemCount: podcastsRecent.length,
                   separatorBuilder: (context, index) => SizedBox(
                     width: 5.0,
                   ),
                   itemBuilder: (context, index) => DarkCoverItem(
-                    title: podcasts[index].title,
-                    subtitle: podcasts[index].author,
-                    imageUrl: podcasts[index].imageUrl,
+                    title: podcastsRecent[index].title,
+                    subtitle: podcastsRecent[index].author,
+                    imageUrl: podcastsRecent[index].imageUrl,
                   ).build(context),
                 ),
               ),
@@ -112,14 +114,15 @@ class Discover extends StatelessWidget {
                 height: 180.0,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 50,
+                  itemCount: podcastsTrending.length,
                   separatorBuilder: (context, index) => SizedBox(
                     width: 5.0,
                   ),
-                  itemBuilder: (context, index) => Text(
-                    'Item $index',
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  itemBuilder: (context, index) => DarkCoverItem(
+                    title: podcastsTrending[index].title,
+                    subtitle: podcastsTrending[index].author,
+                    imageUrl: podcastsTrending[index].imageUrl,
+                  ).build(context),
                 ),
               ),
             ],
@@ -167,56 +170,19 @@ class DarkCoverItem {
 
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 150,
+      width: 140,
       height: 250,
-      child: Stack(
-        children: <Widget>[
-          Container(
-            child: Image.network(
-              imageUrl,
-              fit: BoxFit.fill,
-            ),
+      child: ColorFiltered(
+        colorFilter: ColorFilter.mode(
+          Colors.black.withOpacity(0.1),
+          BlendMode.srcOver,
+        ),
+        child: Container(
+          child: Image.network(
+            imageUrl,
+            fit: BoxFit.fill,
           ),
-          Container(
-            padding: EdgeInsets.all(5.0),
-            alignment: Alignment.topCenter,
-            width: 150,
-            height: 250,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomCenter,
-                end: Alignment.topCenter,
-                colors: <Color>[
-                  Colors.black.withAlpha(0),
-                  Colors.black38, // middle
-                  Colors.black54, // top
-                ],
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.all(10.0),
-            alignment: Alignment.topLeft,
-            child: Text(
-              title,
-              style: TextStyle(
-                color: darkHeadlineColor,
-                fontSize: 20.0,
-              ),
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.fromLTRB(10.0, 60.0, 5.0, 5.0),
-            alignment: Alignment.topLeft,
-            child: Text(
-              subtitle,
-              style: TextStyle(
-                color: darkHeadlineColor,
-                fontSize: 16.0,
-              ),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
