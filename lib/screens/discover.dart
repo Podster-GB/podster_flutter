@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:podster_flutter/constants.dart';
+import 'package:podster_flutter/mock_data.dart';
+import 'package:podster_flutter/podcast.dart';
 
 class Discover extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    MockData mockDataProvider = MockData(context);
+    mockDataProvider.init();
+    List<Podcast> podcasts = mockDataProvider.getTrendingThisWeek();
+
     return Scaffold(
       backgroundColor: darkBackgroundColor,
       body: SafeArea(
@@ -22,7 +28,7 @@ class Discover extends StatelessWidget {
                       style: darkHeadlineTextstyle,
                     ),
                     FaIcon(
-                      threeDotsIcon,
+                      searchIcon,
                       color: darkAccentInactiveColor,
                     ),
                   ],
@@ -33,13 +39,14 @@ class Discover extends StatelessWidget {
                 height: 180.0,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 50,
+                  itemCount: podcasts.length,
                   separatorBuilder: (context, index) => SizedBox(
                     width: 5.0,
                   ),
-                  itemBuilder: (context, index) => DiscoverItem(
-                    title: 'Today In Focus',
-                    subtitle: 'The Guardian',
+                  itemBuilder: (context, index) => DarkCoverItem(
+                    title: podcasts[index].title,
+                    subtitle: podcasts[index].author,
+                    imageUrl: podcasts[index].imageUrl,
                   ).build(context),
                 ),
               ),
@@ -73,14 +80,15 @@ class Discover extends StatelessWidget {
                 height: 180.0,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 50,
+                  itemCount: podcasts.length,
                   separatorBuilder: (context, index) => SizedBox(
                     width: 5.0,
                   ),
-                  itemBuilder: (context, index) => Text(
-                    'Item $index',
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  itemBuilder: (context, index) => DarkCoverItem(
+                    title: podcasts[index].title,
+                    subtitle: podcasts[index].author,
+                    imageUrl: podcasts[index].imageUrl,
+                  ).build(context),
                 ),
               ),
               Padding(
@@ -135,12 +143,12 @@ class Discover extends StatelessWidget {
               title: Text('Home'),
             ),
             BottomNavigationBarItem(
-              icon: broadcastIcon,
+              icon: FaIcon(newsIcon),
               title: Text('Radio'),
             ),
             BottomNavigationBarItem(
-              icon: searchIcon,
-              title: Text('Search'),
+              icon: FaIcon(commentIcon),
+              title: Text('Listening Party'),
             ),
             BottomNavigationBarItem(icon: userIcon, title: Text('Profile')),
           ],
@@ -150,25 +158,44 @@ class Discover extends StatelessWidget {
   }
 }
 
-class DiscoverItem {
+class DarkCoverItem {
   final String title;
   final String subtitle;
+  final String imageUrl;
 
-  DiscoverItem({this.title, this.subtitle});
+  DarkCoverItem({this.title, this.subtitle, this.imageUrl});
 
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 290,
+      width: 150,
       height: 250,
       child: Stack(
         children: <Widget>[
           Container(
-            width: 290,
-            height: 250,
-            color: darkAccentInactiveColor,
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.fill,
+            ),
           ),
           Container(
-            padding: EdgeInsets.all(25.0),
+            padding: EdgeInsets.all(5.0),
+            alignment: Alignment.topCenter,
+            width: 150,
+            height: 250,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: <Color>[
+                  Colors.black.withAlpha(0),
+                  Colors.black38, // middle
+                  Colors.black54, // top
+                ],
+              ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(10.0),
             alignment: Alignment.topLeft,
             child: Text(
               title,
@@ -179,30 +206,13 @@ class DiscoverItem {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(25.0, 55.0, 5.0, 5.0),
+            padding: EdgeInsets.fromLTRB(10.0, 60.0, 5.0, 5.0),
             alignment: Alignment.topLeft,
             child: Text(
               subtitle,
               style: TextStyle(
                 color: darkHeadlineColor,
                 fontSize: 16.0,
-              ),
-            ),
-          ),
-          Container(
-            alignment: Alignment.bottomRight,
-            child: Container(
-              height: 40.0,
-              width: 40.0,
-              decoration: BoxDecoration(
-                color: darkAccentColor,
-              ),
-              child: IconButton(
-                onPressed: () => null,
-                icon: FaIcon(
-                  playIcon,
-                  color: darkHeadlineColor,
-                ),
               ),
             ),
           ),

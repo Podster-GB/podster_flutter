@@ -17,10 +17,12 @@ const darkHeadlineColor = Color(0xFFD8D7DC);
 
 const homeIcon = FaIcon(FontAwesomeIcons.home);
 const broadcastIcon = FaIcon(FontAwesomeIcons.broadcastTower);
-const searchIcon = FaIcon(FontAwesomeIcons.search);
+const searchIcon = FontAwesomeIcons.search;
 const userIcon = FaIcon(FontAwesomeIcons.user);
 const threeDotsIcon = FontAwesomeIcons.ellipsisH;
 const playIcon = FontAwesomeIcons.play;
+const newsIcon = FontAwesomeIcons.newspaper;
+const commentIcon = FontAwesomeIcons.comment;
 
 const darkHeadlineTextstyle = TextStyle(
   color: darkHeadlineColor,
