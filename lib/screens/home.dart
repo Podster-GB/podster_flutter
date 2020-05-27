@@ -4,6 +4,7 @@ import 'package:podster_flutter/components/episode_item.dart';
 import 'package:podster_flutter/components/list_item.dart';
 import 'package:podster_flutter/components/show_item.dart';
 import 'package:podster_flutter/constants.dart';
+import 'package:podster_flutter/podcast_search.dart';
 import 'package:podster_flutter/screens/show_detail.dart';
 import 'package:podster_flutter/screens/tabs/for_you.dart';
 import 'package:podster_flutter/screens/tabs/trending.dart';
@@ -36,7 +37,12 @@ class Home extends StatelessWidget {
             ),
             IconButton(
               icon: Icon(Icons.search),
-              onPressed: () {}, // no-op
+              onPressed: () {
+                showSearch(
+                  context: context,
+                  delegate: PodcastSearch(),
+                );
+              },
             )
           ],
           bottom: TabBar(
