@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Podster Alpha',
+      title: 'Podster',
       theme: ThemeData(
         primaryColor: PRIMARY_COLOR,
         accentColor: ACCENT_COLOR,
