@@ -8,7 +8,7 @@
   <p align="center">
     Choose to make sense of the world around you. Choose Podster.
     <br>
-    A podcast app made with much  :heart: from London. Available on iOS and Android.
+    A podcast app made with  :heart: from London. Available on iOS and Android.
     <br>
     <br>
     <a href="https://github.com/Podster-GB/podster_flutter/issues/new">Report bug</a>
@@ -36,7 +36,7 @@ Have a bug or a feature request? Please first  search for existing and closed is
 
 **Sameen Islam**
 
-- <https://github.com/ismaestro>
+- <https://github.com/samisnotinsane>
 
 **Tien Vu**
 - <https://github.com/cakeydoodoo1>
