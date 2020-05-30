@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:podster_flutter/constants.dart';
 import 'package:podster_flutter/podcast.dart';
 
 class PodcastSearch extends SearchDelegate<Podcast> {
@@ -40,15 +41,34 @@ class PodcastSearch extends SearchDelegate<Podcast> {
 
   @override
   Widget buildResults(BuildContext context) {
-    return Container();
+    return Center(
+      child: Container(
+        height: 100.0,
+        width: 100.0,
+        child: Card(
+          child: Center(
+            child: Text('[Result]'),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    final suggestions = query.isEmpty ? recentTitles : titles;
+    final suggestions = query.isEmpty
+        ? recentTitles
+        : titles
+            .where(
+                (title) => title.toLowerCase().startsWith(query.toLowerCase()))
+            .toList();
     return ListView.builder(
       itemCount: suggestions.length,
       itemBuilder: (context, index) => ListTile(
+        onTap: () {
+          showResults(context);
+        },
+        leading: Icon(Icons.search),
         title: Text(suggestions[index]),
         trailing: Transform.rotate(
           angle: 310 * math.pi / 180,
@@ -63,5 +83,3 @@ class PodcastSearch extends SearchDelegate<Podcast> {
     );
   }
 }
-
-
