@@ -1,6 +1,21 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:podster_flutter/components/banner_tile.dart';
 import 'package:podster_flutter/components/list_item.dart';
+import 'package:podster_flutter/model/feed.dart';
+import 'package:http/http.dart' as http;
+
+Future<Feed> fetchFeed(http.Client client) async {
+  final response = await client.get(
+      'https://rss.itunes.apple.com/api/v1/gb/podcasts/top-podcasts/all/10/explicit.json');
+
+  if (response.statusCode == 200) {
+    return Feed.fromJson(json.decode(response.body));
+  } else {
+    throw Exception('Failed to load feed');
+  }
+}
 
 class TrendingTabView extends StatelessWidget {
   final List<BannerTile> popularThisWeek;
@@ -57,8 +72,8 @@ class TrendingTabView extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: popularThisMonth.length,
                 separatorBuilder: (context, index) => SizedBox(
-                  height: 5.0,
-                ),
+                      height: 5.0,
+                    ),
                 itemBuilder: (context, index) =>
                     popularThisMonth[index].buildTile(context)),
           ),

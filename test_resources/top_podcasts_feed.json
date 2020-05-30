@@ -1,0 +1,301 @@
+{
+    "feed": {
+        "title": "Top Podcasts",
+        "id": "https://rss.itunes.apple.com/api/v1/gb/podcasts/top-podcasts/all/10/explicit.json",
+        "author": {
+            "name": "iTunes Store",
+            "uri": "http://wwww.apple.com/gb/itunes/"
+        },
+        "links": [
+            {
+                "self": "https://rss.itunes.apple.com/api/v1/gb/podcasts/top-podcasts/all/10/explicit.json"
+            },
+            {
+                "alternate": "https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewTop?genreId=26&popId=3"
+            }
+        ],
+        "copyright": "Copyright 2018 Apple Inc. Alle Rechte vorbehalten.",
+        "country": "gb",
+        "icon": "http://itunes.apple.com/favicon.ico",
+        "updated": "2020-05-29T01:56:32.000-07:00",
+        "results": [
+            {
+                "artistName": "BBC Radio 4",
+                "id": "1508985962",
+                "releaseDate": "2020-04-20",
+                "name": "Grounded with Louis Theroux",
+                "kind": "podcast",
+                "copyright": "© (C) BBC 2020",
+                "artistId": "121676617",
+                "artistUrl": "https://podcasts.apple.com/gb/artist/bbc-radio-4/121676617",
+                "artworkUrl100": "https://is5-ssl.mzstatic.com/image/thumb/Podcasts123/v4/5e/ae/7c/5eae7cdf-ed10-badc-daa9-59d7e0aeb669/mza_1597603223523922725.jpg/200x200bb.png",
+                "genres": [
+                    {
+                        "genreId": "1302",
+                        "name": "Personal Journals",
+                        "url": "https://itunes.apple.com/gb/genre/id1302"
+                    },
+                    {
+                        "genreId": "26",
+                        "name": "Podcasts",
+                        "url": "https://itunes.apple.com/gb/genre/id26"
+                    },
+                    {
+                        "genreId": "1324",
+                        "name": "Society & Culture",
+                        "url": "https://itunes.apple.com/gb/genre/id1324"
+                    }
+                ],
+                "url": "https://podcasts.apple.com/gb/podcast/grounded-with-louis-theroux/id1508985962"
+            },
+            {
+                "artistName": "Joe Rogan",
+                "id": "360084272",
+                "releaseDate": "2020-03-06",
+                "name": "The Joe Rogan Experience",
+                "kind": "podcast",
+                "copyright": "Copyright © Talking Monkey Productions",
+                "artistId": "974891224",
+                "contentAdvisoryRating": "Explicit",
+                "artistUrl": "https://podcasts.apple.com/gb/artist/joe-rogan/974891224",
+                "artworkUrl100": "https://is4-ssl.mzstatic.com/image/thumb/Podcasts123/v4/12/ab/d6/12abd655-2473-c4fb-7d53-33e1b9e4afdc/mza_6788052308516976968.jpg/200x200bb.png",
+                "genres": [
+                    {
+                        "genreId": "1303",
+                        "name": "Comedy",
+                        "url": "https://itunes.apple.com/gb/genre/id1303"
+                    },
+                    {
+                        "genreId": "26",
+                        "name": "Podcasts",
+                        "url": "https://itunes.apple.com/gb/genre/id26"
+                    },
+                    {
+                        "genreId": "1324",
+                        "name": "Society & Culture",
+                        "url": "https://itunes.apple.com/gb/genre/id1324"
+                    }
+                ],
+                "url": "https://podcasts.apple.com/gb/podcast/the-joe-rogan-experience/id360084272"
+            },
+            {
+                "artistName": "Chris & Rosie Ramsey",
+                "id": "1451489585",
+                "releaseDate": "2020-03-06",
+                "name": "Sh**ged Married Annoyed",
+                "kind": "podcast",
+                "copyright": "© All rights reserved",
+                "contentAdvisoryRating": "Explicit",
+                "artworkUrl100": "https://is3-ssl.mzstatic.com/image/thumb/Podcasts123/v4/12/d7/95/12d7959e-0a66-ee39-78b7-5deb4e621bf3/mza_8453540741792506753.jpg/200x200bb.png",
+                "genres": [
+                    {
+                        "genreId": "1303",
+                        "name": "Comedy",
+                        "url": "https://itunes.apple.com/gb/genre/id1303"
+                    },
+                    {
+                        "genreId": "26",
+                        "name": "Podcasts",
+                        "url": "https://itunes.apple.com/gb/genre/id26"
+                    }
+                ],
+                "url": "https://podcasts.apple.com/gb/podcast/sh-ged-married-annoyed/id1451489585"
+            },
+            {
+                "artistName": "Keep it Light Media",
+                "id": "1510251497",
+                "releaseDate": "2020-04-28",
+                "name": "Rob Beckett and Josh Widdicombe's Lockdown Parenting Hell",
+                "kind": "podcast",
+                "copyright": "© Copyright 2020 All rights reserved.",
+                "contentAdvisoryRating": "Explicit",
+                "artworkUrl100": "https://is4-ssl.mzstatic.com/image/thumb/Podcasts113/v4/45/79/30/4579300e-748e-8cf1-a4b9-48af1cc2f787/mza_3655508962202275181.jpg/200x200bb.png",
+                "genres": [
+                    {
+                        "genreId": "1496",
+                        "name": "Comedy Interviews",
+                        "url": "https://itunes.apple.com/gb/genre/id1496"
+                    },
+                    {
+                        "genreId": "26",
+                        "name": "Podcasts",
+                        "url": "https://itunes.apple.com/gb/genre/id26"
+                    },
+                    {
+                        "genreId": "1303",
+                        "name": "Comedy",
+                        "url": "https://itunes.apple.com/gb/genre/id1303"
+                    }
+                ],
+                "url": "https://podcasts.apple.com/gb/podcast/rob-beckett-and-josh-widdicombes-lockdown-parenting-hell/id1510251497"
+            },
+            {
+                "artistName": "BBC Radio 5 live",
+                "id": "1436030381",
+                "releaseDate": "2020-03-04",
+                "name": "That Peter Crouch Podcast",
+                "kind": "podcast",
+                "copyright": "© (C) BBC 2020",
+                "artistId": "121676617",
+                "artistUrl": "https://podcasts.apple.com/gb/artist/bbc-radio-5-live/121676617",
+                "artworkUrl100": "https://is4-ssl.mzstatic.com/image/thumb/Podcasts123/v4/60/72/be/6072be4b-0fef-34b0-9dbc-8935e2dab4ae/mza_7157964642687245388.jpg/200x200bb.png",
+                "genres": [
+                    {
+                        "genreId": "1545",
+                        "name": "Sports",
+                        "url": "https://itunes.apple.com/gb/genre/id1545"
+                    },
+                    {
+                        "genreId": "26",
+                        "name": "Podcasts",
+                        "url": "https://itunes.apple.com/gb/genre/id26"
+                    }
+                ],
+                "url": "https://podcasts.apple.com/gb/podcast/that-peter-crouch-podcast/id1436030381"
+            },
+            {
+                "artistName": "kathbum",
+                "id": "1507148315",
+                "releaseDate": "2020-04-09",
+                "name": "Katherine Ryan: Telling Everybody Everything",
+                "kind": "podcast",
+                "copyright": "© Copyright 2020 All rights reserved.",
+                "contentAdvisoryRating": "Explicit",
+                "artworkUrl100": "https://is1-ssl.mzstatic.com/image/thumb/Podcasts123/v4/79/d2/df/79d2dfb8-302d-2b7c-3975-2ac4326dc92e/mza_17950989499464827426.jpeg/200x200bb.png",
+                "genres": [
+                    {
+                        "genreId": "1303",
+                        "name": "Comedy",
+                        "url": "https://itunes.apple.com/gb/genre/id1303"
+                    },
+                    {
+                        "genreId": "26",
+                        "name": "Podcasts",
+                        "url": "https://itunes.apple.com/gb/genre/id26"
+                    }
+                ],
+                "url": "https://podcasts.apple.com/gb/podcast/katherine-ryan-telling-everybody-everything/id1507148315"
+            },
+            {
+                "artistName": "Amanda Redman",
+                "id": "1510308321",
+                "releaseDate": "2020-05-25",
+                "name": "We Will Get Past This",
+                "kind": "podcast",
+                "copyright": "© Sandi Toksvig",
+                "artworkUrl100": "https://is2-ssl.mzstatic.com/image/thumb/Podcasts123/v4/e9/4d/de/e94ddee5-2e99-10d6-be57-21c25382ef18/mza_10369393827603567313.jpeg/200x200bb.png",
+                "genres": [
+                    {
+                        "genreId": "1303",
+                        "name": "Comedy",
+                        "url": "https://itunes.apple.com/gb/genre/id1303"
+                    },
+                    {
+                        "genreId": "26",
+                        "name": "Podcasts",
+                        "url": "https://itunes.apple.com/gb/genre/id26"
+                    },
+                    {
+                        "genreId": "1304",
+                        "name": "Education",
+                        "url": "https://itunes.apple.com/gb/genre/id1304"
+                    }
+                ],
+                "url": "https://podcasts.apple.com/gb/podcast/we-will-get-past-this/id1510308321"
+            },
+            {
+                "artistName": "The Telegraph",
+                "id": "1514949294",
+                "releaseDate": "2020-05-28",
+                "name": "Planet Normal",
+                "kind": "podcast",
+                "copyright": "© Copyright 2020. All rights reserved.",
+                "artworkUrl100": "https://is4-ssl.mzstatic.com/image/thumb/Podcasts113/v4/e1/48/f2/e148f2cc-52bf-f835-927f-eb7e9022ce08/mza_12781021262462455523.jpeg/200x200bb.png",
+                "genres": [
+                    {
+                        "genreId": "1530",
+                        "name": "News Commentary",
+                        "url": "https://itunes.apple.com/gb/genre/id1530"
+                    },
+                    {
+                        "genreId": "26",
+                        "name": "Podcasts",
+                        "url": "https://itunes.apple.com/gb/genre/id26"
+                    },
+                    {
+                        "genreId": "1489",
+                        "name": "News",
+                        "url": "https://itunes.apple.com/gb/genre/id1489"
+                    },
+                    {
+                        "genreId": "1527",
+                        "name": "Politics",
+                        "url": "https://itunes.apple.com/gb/genre/id1527"
+                    }
+                ],
+                "url": "https://podcasts.apple.com/gb/podcast/planet-normal/id1514949294"
+            },
+            {
+                "artistName": "Fearne Cotton",
+                "id": "1353058891",
+                "releaseDate": "2020-03-09",
+                "name": "Happy Place",
+                "kind": "podcast",
+                "copyright": "© Fearne Cotton 2020",
+                "artworkUrl100": "https://is2-ssl.mzstatic.com/image/thumb/Podcasts123/v4/d5/df/f2/d5dff2e9-1fe1-0b72-2c29-201ef8797856/mza_4240629851493804374.jpg/200x200bb.png",
+                "genres": [
+                    {
+                        "genreId": "1517",
+                        "name": "Mental Health",
+                        "url": "https://itunes.apple.com/gb/genre/id1517"
+                    },
+                    {
+                        "genreId": "26",
+                        "name": "Podcasts",
+                        "url": "https://itunes.apple.com/gb/genre/id26"
+                    },
+                    {
+                        "genreId": "1512",
+                        "name": "Health & Fitness",
+                        "url": "https://itunes.apple.com/gb/genre/id1512"
+                    },
+                    {
+                        "genreId": "1513",
+                        "name": "Alternative Health",
+                        "url": "https://itunes.apple.com/gb/genre/id1513"
+                    }
+                ],
+                "url": "https://podcasts.apple.com/gb/podcast/happy-place/id1353058891"
+            },
+            {
+                "artistName": "BBC Radio",
+                "id": "1234185718",
+                "releaseDate": "2020-03-05",
+                "name": "Newscast",
+                "kind": "podcast",
+                "copyright": "© (C) BBC 2020",
+                "artistId": "121676617",
+                "artistUrl": "https://podcasts.apple.com/gb/artist/bbc-radio/121676617",
+                "artworkUrl100": "https://is5-ssl.mzstatic.com/image/thumb/Podcasts113/v4/af/f8/a7/aff8a727-baab-767b-2337-a51d6fa728db/mza_9054879421322979094.jpg/200x200bb.png",
+                "genres": [
+                    {
+                        "genreId": "1511",
+                        "name": "Government",
+                        "url": "https://itunes.apple.com/gb/genre/id1511"
+                    },
+                    {
+                        "genreId": "26",
+                        "name": "Podcasts",
+                        "url": "https://itunes.apple.com/gb/genre/id26"
+                    },
+                    {
+                        "genreId": "1489",
+                        "name": "News",
+                        "url": "https://itunes.apple.com/gb/genre/id1489"
+                    }
+                ],
+                "url": "https://podcasts.apple.com/gb/podcast/newscast/id1234185718"
+            }
+        ]
+    }
+}
