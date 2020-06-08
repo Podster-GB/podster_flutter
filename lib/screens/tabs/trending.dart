@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:podster_flutter/components/banner_tile.dart';
 import 'package:podster_flutter/components/list_item.dart';
+import 'package:podster_flutter/model/feed.dart';
+import 'package:podster_flutter/podcast.dart';
+import 'package:podster_flutter/services/feed_generator.dart';
+
+import 'package:http/http.dart' as http;
 
 class TrendingTabView extends StatefulWidget {
   final List<BannerTile> popularThisWeek;
@@ -14,6 +19,34 @@ class TrendingTabView extends StatefulWidget {
 }
 
 class _TrendingTabViewState extends State<TrendingTabView> {
+  FeedGenerator feedGenerator = FeedGenerator();
+  List<Podcast> topPodcasts = [];
+
+  void updateUI() async {
+    List<dynamic> feedItems;
+    http.Client httpClient = http.Client();
+    Feed feed = await feedGenerator.fetchFeed(httpClient);
+    feed != null
+        ? feedItems = feed.results
+        : print('[ERROR] Feed returned no results!');
+    for (Map<String, dynamic> feedItem in feedItems) {
+      topPodcasts.add(
+        Podcast(
+          title: feedItem['name'],
+          author: feedItem['artistName'],
+          imageUrl: feedItem['artworkUrl100'],
+          genre: feedItem['genres'][0]['name'],
+        ),
+      );
+    }
+    setState((){});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    updateUI();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +83,7 @@ class _TrendingTabViewState extends State<TrendingTabView> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              'Popular This Month',
+              'Top Podcasts',
               style: TextStyle(
                 fontSize: 18.0,
               ),
@@ -61,12 +94,17 @@ class _TrendingTabViewState extends State<TrendingTabView> {
             child: ListView.separated(
                 physics: ScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: widget.popularThisMonth.length,
+                itemCount: topPodcasts.length,
                 separatorBuilder: (context, index) => SizedBox(
-                      height: 5.0,
-                    ),
-                itemBuilder: (context, index) =>
-                    widget.popularThisMonth[index].buildTile(context)),
+                  height: 5.0,
+                ),
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: Image.network(topPodcasts[index].imageUrl),
+                    title: Text(topPodcasts[index].title),
+                  );
+                }
+            ),
           ),
         ],
       ),
