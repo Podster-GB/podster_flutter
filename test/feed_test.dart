@@ -4,8 +4,9 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:http/http.dart' as http;
+
 import 'package:podster_flutter/model/feed.dart';
-import 'package:podster_flutter/screens/tabs/trending.dart';
+import 'package:podster_flutter/services/feed_generator.dart';
 
 class MockClient extends Mock implements http.Client {}
 
@@ -23,69 +24,68 @@ main() {
     test('returns a feed if http call completes successfully', () async {
       final file = File('test_resources/top_podcasts_feed.json');
       final client = MockClient();
-      when(client.get(
-              'https://rss.itunes.apple.com/api/v1/gb/podcasts/top-podcasts/all/10/explicit.json'))
+      final feedGenerator = FeedGenerator();
+
+      when(client.get(topTenUkPodcastsUrl))
           .thenAnswer(
               (_) async => http.Response(await file.readAsString(), 200));
-
-      expect(await fetchFeed(client), isA<Feed>());
+              
+      expect(await feedGenerator.fetchFeed(client), isA<Feed>());
     });
 
     test('throws an exception if the http call completes with error', () async {
       final client = MockClient();
+      final feedGenerator = FeedGenerator();
 
-      when(client.get(
-              'https://rss.itunes.apple.com/api/v1/gb/podcasts/top-podcasts/all/10/explicit.json'))
+      when(client.get(topTenUkPodcastsUrl))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
-      expect(() => fetchFeed(client), throwsException);
+      expect(() => feedGenerator.fetchFeed(client), throwsException);
     });
 
     test('returns title as "Top Podcasts"', () async {
       final file = File('test_resources/top_podcasts_feed.json');
       final client = MockClient();
+      final feedGenerator = FeedGenerator();
+
       when(
-        client.get(
-          'https://rss.itunes.apple.com/api/v1/gb/podcasts/top-podcasts/all/10/explicit.json',
-        ),
+        client.get(topTenUkPodcastsUrl),
       ).thenAnswer(
         (_) async => http.Response(await file.readAsString(), 200),
       );
 
-      Feed feed = await fetchFeed(client);
+      Feed feed = await feedGenerator.fetchFeed(client);
       expect(feed.title, 'Top Podcasts');
     });
 
     test('returns author as map', () async {
       final file = File('test_resources/top_podcasts_feed.json');
       final client = MockClient();
+      final feedGenerator = FeedGenerator();
+
       when(
-        client.get(
-          'https://rss.itunes.apple.com/api/v1/gb/podcasts/top-podcasts/all/10/explicit.json',
-        ),
+        client.get(topTenUkPodcastsUrl),
       ).thenAnswer(
         (_) async => http.Response(await file.readAsString(), 200),
       );
 
-      Feed feed = await fetchFeed(client);
+      Feed feed = await feedGenerator.fetchFeed(client);
       expect(feed.author, isA<Map>());
     });
 
     test('updated should be datetime', () async {
       final file = File('test_resources/top_podcasts_feed.json');
       final client = MockClient();
+      final feedGenerator = FeedGenerator();
+
       when(
-        client.get(
-          'https://rss.itunes.apple.com/api/v1/gb/podcasts/top-podcasts/all/10/explicit.json',
-        ),
+        client.get(topTenUkPodcastsUrl),
       ).thenAnswer(
         (_) async => http.Response(await file.readAsString(), 200),
       );
 
-      Feed feed = await fetchFeed(client);
+      Feed feed = await feedGenerator.fetchFeed(client);
       expect(feed.updated, isA<DateTime>());
     });
-
-
   });
 }
