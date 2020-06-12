@@ -39,6 +39,9 @@ dependencies:
   # Firebase Cloud Firestore.
   cloud_firestore: ^0.13.6
 
+  # Loading Spinner.
+  modal_progress_hud: ^0.1.3
+
 
 dev_dependencies:
   flutter_test:
