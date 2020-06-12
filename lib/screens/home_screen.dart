@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
       _signedInUser != null 
       ? signedInUser = _signedInUser
       : print('User not signed in');
-      print('${signedInUser.email}');
+      print('${signedInUser.email} signed in');
     }
     catch (e) {
       print(e);
@@ -40,7 +40,8 @@ class _HomeScreenState extends State<HomeScreen> {
           IconButton(
             icon: Icon(Icons.close),
             onPressed: () {
-
+              _auth.signOut();
+              Navigator.pop(context);
             },
           ),
         ],
