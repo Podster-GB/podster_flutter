@@ -112,6 +112,14 @@ class _SignInScreenState extends State<SignInScreen> {
                       title: 'Sorry',
                       body: errorMessage,
                     );
+                  } catch (error) {
+                    if(email == null) {
+                      MessageAlert(context).build(
+                        title: 'Could not sign in',
+                        body: 'Check that you have entered a valid email address and password.',
+                      );
+                    }
+                    print(error);
                   }
                   setState(() {
                     _isLoading = false;
@@ -119,6 +127,50 @@ class _SignInScreenState extends State<SignInScreen> {
                 },
                 text: 'Sign In',
               ),
+              SizedBox(
+                height: 14.0,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30.0),
+                child: Container(
+                  height: 1.0,
+                  width: 130.0,
+                  color: Colors.grey,
+                ),
+              ),
+              SizedBox(
+                height: 24.0,
+              ),
+              OutlineButton(
+                splashColor: Colors.grey,
+                onPressed: () {},
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(40)),
+                highlightElevation: 0,
+                borderSide: BorderSide(color: Colors.grey),
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image(
+                          image: AssetImage("assets/images/google-logo.png"),
+                          height: 25.0),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Text(
+                          'Sign in with Google',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),

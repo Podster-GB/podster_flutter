@@ -41,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.close),
             onPressed: () {
               _auth.signOut();
+              print('${signedInUser.email} signed out');
               Navigator.pop(context);
             },
           ),
