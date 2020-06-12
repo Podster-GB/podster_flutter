@@ -170,15 +170,8 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               OutlineButton(
                 onPressed: () {
-                  // TODO: Fix bug which causes app to crash when signing in with Google.
                   signInWithGoogle().whenComplete(() {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return HomeScreen();
-                        },
-                      ),
-                    );
+                    Navigator.pushNamed(context, HomeScreen.id);
                   });
                 },
                 splashColor: Colors.deepPurple[200],
