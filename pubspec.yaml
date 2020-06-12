@@ -30,6 +30,15 @@ dependencies:
   # Support for animated text.
   animated_text_kit: ^2.2.0
 
+  # Firebase Core.
+  firebase_core: ^0.4.5
+
+  # Firebase Authentication.
+  firebase_auth: ^0.16.1
+
+  # Firebase Cloud Firestore.
+  cloud_firestore: ^0.13.6
+
 
 dev_dependencies:
   flutter_test:
