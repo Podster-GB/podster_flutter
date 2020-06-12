@@ -24,8 +24,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
-  # Support for SVG assets
+  # Support for SVG assets.
   flutter_svg: ^0.17.4
+
+  # Support for animated text.
+  animated_text_kit: ^2.2.0
 
 
 dev_dependencies:

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:podster_flutter/constants.dart';
 import 'package:podster_flutter/screens/home.dart';
 import 'package:podster_flutter/screens/landing.dart';
+import 'package:podster_flutter/screens/welcome_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => Landing(),
+        '/': (context) => WelcomeScreen(),
         '/for_you': (context) => Home(),
       },
     );
