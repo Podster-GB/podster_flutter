@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = '/home';
@@ -10,6 +11,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   FirebaseUser signedInUser;
 
   void fetchSignedInUser() async {
@@ -23,6 +25,11 @@ class _HomeScreenState extends State<HomeScreen> {
     catch (e) {
       print(e);
     }
+  }
+
+  void signOutWithGoogle() async {
+    await googleSignIn.signOut();
+    print('Signed out using Google');
   }
 
   @override
@@ -41,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.close),
             onPressed: () {
               _auth.signOut();
+              signOutWithGoogle();
               print('${signedInUser.email} signed out');
               Navigator.pop(context);
             },

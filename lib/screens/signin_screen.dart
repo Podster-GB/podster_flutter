@@ -1,3 +1,4 @@
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,10 +18,35 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _authGoogle = GoogleSignIn();
   bool _isLoading = false;
   String email;
   String password;
   String errorMessage;
+
+  Future<String> signInWithGoogle() async {
+    final GoogleSignInAccount _googleAccount = await _authGoogle.signIn();
+    final GoogleSignInAuthentication _googleAuth =
+        await _googleAccount.authentication;
+
+    final AuthCredential _googleCredentials = GoogleAuthProvider.getCredential(
+      accessToken: _googleAuth.accessToken,
+      idToken: _googleAuth.idToken,
+    );
+
+    final AuthResult _authRes =
+        await _auth.signInWithCredential(_googleCredentials);
+
+    final FirebaseUser user = _authRes.user;
+
+    assert(!user.isAnonymous);
+    assert(await user.getIdToken() != null);
+
+    final FirebaseUser currentUser = await _auth.currentUser();
+    assert(user.uid == currentUser.uid);
+
+    return 'signInWithGoogle succeeded: $user';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,10 +139,11 @@ class _SignInScreenState extends State<SignInScreen> {
                       body: errorMessage,
                     );
                   } catch (error) {
-                    if(email == null) {
+                    if (email == null || password == null) {
                       MessageAlert(context).build(
                         title: 'Could not sign in',
-                        body: 'Check that you have entered a valid email address and password.',
+                        body:
+                            'Check that you have entered a valid email address and password.',
                       );
                     }
                     print(error);
@@ -142,12 +169,23 @@ class _SignInScreenState extends State<SignInScreen> {
                 height: 24.0,
               ),
               OutlineButton(
-                splashColor: Colors.grey,
-                onPressed: () {},
+                onPressed: () {
+                  // TODO: Fix bug which causes app to crash when signing in with Google.
+                  signInWithGoogle().whenComplete(() {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return HomeScreen();
+                        },
+                      ),
+                    );
+                  });
+                },
+                splashColor: Colors.deepPurple[200],
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40)),
                 highlightElevation: 0,
-                borderSide: BorderSide(color: Colors.grey),
+                borderSide: BorderSide(color: Colors.deepPurple[200]),
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
                   child: Row(
@@ -163,7 +201,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           'Sign in with Google',
                           style: TextStyle(
                             fontSize: 20,
-                            color: Colors.grey,
+                            color: Colors.deepPurple,
                           ),
                         ),
                       )
