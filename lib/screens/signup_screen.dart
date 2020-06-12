@@ -85,12 +85,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ? Navigator.pushNamed(context, HomeScreen.id)
                         : print('Failed to register $email');
                   } on PlatformException catch (error) {
-                    switch(error.code) {
+                    switch (error.code) {
                       case 'ERROR_EMAIL_ALREADY_IN_USE':
-                      errorMessage = error.message;
-                      break;
-                    default:
-                      errorMessage = 'An unknown error occurred';
+                        errorMessage = error.message;
+                        break;
+                      default:
+                        errorMessage = 'An unknown error occurred';
                     }
                     MessageAlert(context).build(
                       title: 'Sorry',
