@@ -2,10 +2,12 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:podster_flutter/components/rounded_button.dart';
-
-import '../constants.dart';
+import 'package:podster_flutter/screens/signin_screen.dart';
+import 'package:podster_flutter/screens/signup_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
+  static const String id = '/welcome_screen';
+
   @override
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
@@ -48,13 +50,17 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               height: 48.0,
             ),
             RoundedButton(
-              color: Colors.purple[900],
-              onPressed: () {},
+              color: Colors.deepPurple,
+              onPressed: () {
+                Navigator.pushNamed(context, SignInScreen.id);
+              },
               text: 'Sign In',
             ),
             RoundedButton(
               color: Colors.deepPurple[200],
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, SignUpScreen.id);
+              },
               text: 'Sign Up',
             ),
           ],
