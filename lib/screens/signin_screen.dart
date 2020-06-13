@@ -169,10 +169,15 @@ class _SignInScreenState extends State<SignInScreen> {
                 height: 24.0,
               ),
               OutlineButton(
-                onPressed: () {
-                  signInWithGoogle().whenComplete(() {
-                    Navigator.pushNamed(context, HomeScreen.id);
-                  });
+                onPressed: () async {
+                  try {
+                    String username = await signInWithGoogle();
+                    username != null
+                        ? Navigator.pushNamed(context, HomeScreen.id)
+                        : print('Could not sign in user $username');
+                  } catch (e) {
+                    print('Sign in with Google cancelled by user');
+                  }
                 },
                 splashColor: Colors.deepPurple[200],
                 shape: RoundedRectangleBorder(
