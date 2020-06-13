@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:podster_flutter/constants.dart';
-import 'package:podster_flutter/screens/home.dart';
-import 'package:podster_flutter/screens/landing.dart';
+import 'package:podster_flutter/screens/home_screen.dart';
+import 'package:podster_flutter/screens/signin_screen.dart';
+import 'package:podster_flutter/screens/signup_screen.dart';
+import 'package:podster_flutter/screens/welcome_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,10 +17,12 @@ class MyApp extends StatelessWidget {
         primaryColor: PRIMARY_COLOR,
         accentColor: ACCENT_COLOR,
       ),
-      initialRoute: '/',
+      initialRoute: WelcomeScreen.id,
       routes: {
-        '/': (context) => Landing(),
-        '/for_you': (context) => Home(),
+        WelcomeScreen.id: (context) => WelcomeScreen(),
+        SignUpScreen.id: (context) => SignUpScreen(),
+        SignInScreen.id: (context) => SignInScreen(),
+        HomeScreen.id: (context) => HomeScreen(),
       },
     );
   }
