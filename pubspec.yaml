@@ -45,6 +45,11 @@ dependencies:
   # Sign in with Google.
   google_sign_in: ^4.5.1
 
+  # Http requests.
+  http: ^0.12.0+2
+
+  # Logging.
+  logger: ^0.9.1
 
 dev_dependencies:
   flutter_test:

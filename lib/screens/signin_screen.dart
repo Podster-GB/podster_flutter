@@ -3,11 +3,23 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:logger/logger.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:podster_flutter/components/msg_alert.dart';
 import 'package:podster_flutter/components/rounded_button.dart';
 import 'package:podster_flutter/constants.dart';
 import 'package:podster_flutter/screens/home_screen.dart';
+
+var logger = Logger(
+  printer: PrettyPrinter(
+    methodCount: 1, // number of method calls to be displayed
+    errorMethodCount: 8, // number of method calls if stacktrace is provided
+    lineLength: 30, // width of the output
+    colors: true, // Colorful log messages
+    printEmojis: true, // Print an emoji for each log message
+    printTime: false // Should each log print contain a timestamp
+  ),
+);
 
 class SignInScreen extends StatefulWidget {
   static const String id = '/signin';
@@ -60,10 +72,15 @@ class _SignInScreenState extends State<SignInScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SvgPicture.asset(
-                'assets/images/podster-logo.svg',
-                semanticsLabel: 'Podster logo',
-                height: 200.0,
+              Flexible(
+                child: Container(
+                  height: 200.0,
+                  child: SvgPicture.asset(
+                    'assets/images/podster-logo.svg',
+                    semanticsLabel: 'Podster logo',
+                    height: 200.0,
+                  ),
+                ),
               ),
               SizedBox(
                 height: 48.0,
@@ -107,7 +124,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
                     user != null
                         ? Navigator.pushNamed(context, HomeScreen.id)
-                        : print('Could not sign in $email');
+                        : logger.e('Could not sign in $email');
                   } on PlatformException catch (error) {
                     switch (error.code) {
                       case "ERROR_INVALID_EMAIL":
@@ -146,7 +163,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             'Check that you have entered a valid email address and password.',
                       );
                     }
-                    print(error);
+                    logger.e(error);
                   }
                   setState(() {
                     _isLoading = false;
@@ -174,9 +191,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     String username = await signInWithGoogle();
                     username != null
                         ? Navigator.pushNamed(context, HomeScreen.id)
-                        : print('Could not sign in user $username');
+                        : logger.e('Could not sign in user $username');
                   } catch (e) {
-                    print('Sign in with Google cancelled by user');
+                    logger.i('Sign in with Google cancelled by user');
                   }
                 },
                 splashColor: Colors.deepPurple[200],

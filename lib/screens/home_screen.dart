@@ -1,6 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:logger/logger.dart';
+
+var logger = Logger(
+  printer: PrettyPrinter(
+    methodCount: 1, // number of method calls to be displayed
+    errorMethodCount: 8, // number of method calls if stacktrace is provided
+    lineLength: 30, // width of the output
+    colors: true, // Colorful log messages
+    printEmojis: true, // Print an emoji for each log message
+    printTime: false // Should each log print contain a timestamp
+  ),
+);
 
 class HomeScreen extends StatefulWidget {
   static const String id = '/home';
@@ -19,22 +31,29 @@ class _HomeScreenState extends State<HomeScreen> {
       final FirebaseUser _signedInUser = await _auth.currentUser();
       _signedInUser != null
           ? signedInUser = _signedInUser
-          : print('User not signed in');
-      print('${signedInUser.email} signed in');
+          : logger.w('User not signed in');
+      logger.i('${signedInUser.email} signed in');
     } catch (e) {
-      print(e);
+      logger.e(e);
     }
   }
 
   void signOutWithGoogle() async {
     await googleSignIn.signOut();
-    print('Signed out using Google');
+    logger.i('Signed out using Google');
+  }
+
+  void getData() {
+    String region = 'GB';
+    String urlCuratedLists = 'https://api.spreaker.com/v2/explore/lists?country=$region';
+    
   }
 
   @override
   void initState() {
     super.initState();
     fetchSignedInUser();
+    getData();
   }
 
   void _selectBottomSheetItem(String name) {
@@ -42,12 +61,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     if (googleSignIn.currentUser != null) {
       signOutWithGoogle();
-      print('Signed out using Google');
+      logger.i('Signed out using Google');
     } else {
       _auth.signOut();
-      print('${signedInUser.email} signed out');
+      logger.i('${signedInUser.email} signed out');
     }
-    
+
     Navigator.pop(context); // Go to sign in screen.
   }
 
@@ -80,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 6,
       child: Scaffold(
         appBar: AppBar(
           leading: Container(),
@@ -89,22 +108,70 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.person),
               onPressed: () => _onAvatarPress(),
             ),
-            // GestureDetector(
-            //   onTap: () => _onAvatarPress(),
-            //   child: CircleAvatar(
-            //     radius: 20.0,
-            //     backgroundColor: Colors.deepPurple[200],
-            //     child: ClipOval(
-            //       child: _getProfilePic(),
-            //     ),
-            //   ),
-            // ),
           ],
-          title: Text('Home'),
-          backgroundColor: Colors.deepPurple[200],
+          backgroundColor: Colors.deepPurple,
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(30.0),
+            child: TabBar(
+              isScrollable: true,
+              indicatorColor: Colors.black,
+              unselectedLabelColor: Colors.white.withOpacity(0.3),
+              tabs: <Widget>[
+                Tab(
+                  text: 'Trending',
+                ),
+                Tab(
+                  text: 'Staff Picks',
+                ),
+                Tab(
+                  text: 'Popular Shows',
+                ),
+                Tab(
+                  text: 'News',
+                ),
+                Tab(
+                  text: 'Entertainment',
+                ),
+                Tab(
+                  text: 'Sports',
+                ),
+              ],
+            ),
+          ),
         ),
-        body: Center(
-          child: Text('Tap avatar for more options.'),
+        body: TabBarView(
+          children: <Widget>[
+            Container(
+              child: Center(
+                child: Text('Tab 1'),
+              ),
+            ),
+            Container(
+              child: Center(
+                child: Text('Tab 2'),
+              ),
+            ),
+            Container(
+              child: Center(
+                child: Text('Tab 3'),
+              ),
+            ),
+            Container(
+              child: Center(
+                child: Text('Tab 4'),
+              ),
+            ),
+            Container(
+              child: Center(
+                child: Text('Tab 5'),
+              ),
+            ),
+            Container(
+              child: Center(
+                child: Text('Tab 6'),
+              ),
+            ),
+          ],
         ),
       ),
     );
