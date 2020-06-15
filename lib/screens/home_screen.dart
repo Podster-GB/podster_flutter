@@ -44,9 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void getData() {
-    String region = 'GB';
-    String urlCuratedLists = 'https://api.spreaker.com/v2/explore/lists?country=$region';
-    
+    // TODO: populate UI with show data.
+    // String region = 'GB';
+    // String urlCuratedLists = 'https://api.spreaker.com/v2/explore/lists?country=$region';
   }
 
   @override

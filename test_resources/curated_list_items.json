@@ -1,0 +1,27 @@
+{
+    "response": {
+        "items": [{
+            "show_id": 1660908,
+            "title": "Barely Friending",
+            "site_url": "https://www.spreaker.com/show/barely-friending_1",
+            "image_url": "https://d1bm3dmew779uf.cloudfront.net/large/ccbe3e17c7ee5e30a8ecd43ac5a62b8b.jpg",
+            "image_original_url": "https://d3wo5wojvuv7l.cloudfront.net/images.spreaker.com/original/ccbe3e17c7ee5e30a8ecd43ac5a62b8b.jpg",
+            "author_id": 8647876
+        }, {
+            "show_id": 1671386,
+            "title": "The Way I Heard It with Mike Rowe",
+            "site_url": "https://www.spreaker.com/show/the-way-i-heard-it-with-mike-rowe_1",
+            "image_url": "https://d1bm3dmew779uf.cloudfront.net/large/f4fbc9e8910b903668490f7cd6d8163c.jpg",
+            "image_original_url": "https://d3wo5wojvuv7l.cloudfront.net/images.spreaker.com/original/f4fbc9e8910b903668490f7cd6d8163c.jpg",
+            "author_id": 8671031
+        }, {
+            "show_id": 1441069,
+            "title": "BodegaBoxOffice",
+            "site_url": "https://www.spreaker.com/show/bodegaboxoffice",
+            "image_url": "https://d1bm3dmew779uf.cloudfront.net/large/f2a21ffdc6cdf1891c961f23eec04927.jpg",
+            "image_original_url": "https://d3wo5wojvuv7l.cloudfront.net/images.spreaker.com/original/f2a21ffdc6cdf1891c961f23eec04927.jpg",
+            "author_id": 8182710
+        }],
+        "next_url": "https://api.spreaker.com/v2/explore/lists/108/items?last_id=1441069&limit=3"
+    }
+}

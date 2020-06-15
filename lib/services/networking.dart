@@ -23,12 +23,12 @@ class NetworkProvider {
   /// Destination [url] for http requests.
   NetworkProvider(this.url);
 
-  /// Makes a http GET request.
+  /// Makes a http GET request using the [client].
   /// 
   /// Returns [json] body if the response code was 200 or
   /// [null] otherwise.
-  Future getData() async {
-    http.Response response = await http.get(url);
+  Future getData(http.Client client) async {
+    http.Response response = await client.get(url);
     if (response.statusCode == 200) {
       String responseBody = response.body;
       return convert.jsonDecode(responseBody);

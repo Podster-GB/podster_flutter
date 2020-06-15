@@ -1,0 +1,21 @@
+{
+    "response": {
+        "items": [{
+            "list_id": 108,
+            "name": "Featured This Week",
+            "subtitle": null,
+            "type": "shows"
+        }, {
+            "list_id": 107,
+            "name": "Popular Shows",
+            "subtitle": null,
+            "type": "shows"
+        }, {
+            "list_id": 109,
+            "name": "Staff Pick",
+            "subtitle": null,
+            "type": "shows"
+        }],
+        "next_url": "https://api.spreaker.com/v2/explore/lists?country=US&last_id=109&limit=3"
+    }
+}
