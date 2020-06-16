@@ -23,11 +23,12 @@ const String country = 'GB'; // must be an ISO 3166-1 country code
 class ExploreAPI {
 
 
-  Future<Map<String, dynamic>> getCuratedLists(http.Client client) async {
+  Future<List<dynamic>> getCuratedLists(http.Client client) async {
     String _endpointUrl = '$baseUrl/$version/$endpointName/$contentFormat?country=$country';
     NetworkProvider _networkProvider = NetworkProvider(_endpointUrl);
-    dynamic _response = await _networkProvider.getData(client);
-    return _response;
+    dynamic _body = await _networkProvider.getData(client);
+    List<dynamic> _curatedLists = _body['response']['items'];
+    return _curatedLists;
   }
 
   Future<dynamic> getCuratedListItems(http.Client client, int listId) async {

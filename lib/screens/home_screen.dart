@@ -1,7 +1,9 @@
+import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
+import 'package:podster_flutter/services/spreaker/explore_api.dart';
 
 var logger = Logger(
   printer: PrettyPrinter(
@@ -25,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   FirebaseUser signedInUser;
+  List<dynamic> _curatedListNames = [];
 
   void fetchSignedInUser() async {
     try {
@@ -43,10 +46,12 @@ class _HomeScreenState extends State<HomeScreen> {
     logger.i('Signed out using Google');
   }
 
-  void getData() {
-    // TODO: populate UI with show data.
-    // String region = 'GB';
-    // String urlCuratedLists = 'https://api.spreaker.com/v2/explore/lists?country=$region';
+  void getData() async {
+    final ExploreAPI exploreAPI = ExploreAPI();
+    var httpClient = http.Client();
+    _curatedListNames = await exploreAPI.getCuratedLists(httpClient);
+    logger.d(_curatedListNames);
+    setState(() {});
   }
 
   @override
@@ -143,7 +148,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: <Widget>[
             Container(
               child: Center(
-                child: Text('Tab 1'),
+                child: Text(_curatedListNames.toString()),
               ),
             ),
             Container(

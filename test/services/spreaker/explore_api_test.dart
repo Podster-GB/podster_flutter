@@ -20,7 +20,7 @@ void main() {
           (_) async => http.Response(await file.readAsString(), 200));
 
       expect(
-          await api.getCuratedLists(mockClient), isA<Map<String, dynamic>>());
+          await api.getCuratedLists(mockClient), isA<List<dynamic>>());
     });
 
     test('curated lists length should not be 0', () async {
@@ -33,8 +33,7 @@ void main() {
       when(mockClient.get(endpointUrl)).thenAnswer(
           (_) async => http.Response(await file.readAsString(), 200));
 
-      Map<String, dynamic> response = await api.getCuratedLists(mockClient);
-      List<dynamic> items = response['response']['items'];
+      List<dynamic> items = await api.getCuratedLists(mockClient);
       expect(items.length, isNot(0));
     });
 
@@ -48,10 +47,9 @@ void main() {
       when(mockClient.get(endpointUrl)).thenAnswer(
           (_) async => http.Response(await file.readAsString(), 200));
 
-      final Map<String, dynamic> curatedListItems =
+      final List<dynamic> curatedListItems =
           await api.getCuratedLists(mockClient);
-      List<dynamic> items = curatedListItems['response']['items'];
-      String type = items[0]['type'];
+      String type = curatedListItems[0]['type'];
 
       expect(type, 'shows');
     });
