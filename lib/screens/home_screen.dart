@@ -106,33 +106,41 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.graphic_eq),
-          onPressed: () => _onAvatarPress(), // TODO: show bottom modal.
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () {}, // TODO: Implement search podcast by show name
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            leading: IconButton(
+              icon: Icon(Icons.graphic_eq),
+              onPressed: () => _onAvatarPress(), // TODO: show bottom modal.
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () {}, // TODO: Implement search podcast by show name
+              ),
+              IconButton(
+                icon: Icon(Icons.person),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: Icon(Icons.notifications),
+                onPressed: () {}, // TODO: Navigate to notifications screen
+              ),
+            ],
+            backgroundColor: Colors.deepPurple,
           ),
-          IconButton(
-            icon: Icon(Icons.person),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.notifications),
-            onPressed: () {}, // TODO: Navigate to notifications screen
+          SliverList(
+            delegate: SliverChildListDelegate.fixed(
+              [
+                ChipBar(
+                  chipTitles: _curatedListItems
+                      .map((mapItem) => mapItem['name'].toString())
+                      .toList(),
+                ),
+              ],
+            ),
           ),
         ],
-        backgroundColor: Colors.deepPurple,
-      ),
-      body: Center(
-        child: ChipBar(
-          chipTitles: _curatedListItems
-              .map((mapItem) => mapItem['name'].toString())
-              .toList(),
-        ),
       ),
     );
   }
