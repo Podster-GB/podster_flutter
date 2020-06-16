@@ -3,17 +3,18 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:logger/logger.dart';
+import 'package:podster_flutter/components/chip_bar.dart';
 import 'package:podster_flutter/services/spreaker/explore_api.dart';
 
 var logger = Logger(
   printer: PrettyPrinter(
-    methodCount: 1, // number of method calls to be displayed
-    errorMethodCount: 8, // number of method calls if stacktrace is provided
-    lineLength: 30, // width of the output
-    colors: true, // Colorful log messages
-    printEmojis: true, // Print an emoji for each log message
-    printTime: false // Should each log print contain a timestamp
-  ),
+      methodCount: 1, // number of method calls to be displayed
+      errorMethodCount: 8, // number of method calls if stacktrace is provided
+      lineLength: 30, // width of the output
+      colors: true, // Colorful log messages
+      printEmojis: true, // Print an emoji for each log message
+      printTime: false // Should each log print contain a timestamp
+      ),
 );
 
 class HomeScreen extends StatefulWidget {
@@ -27,7 +28,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
   FirebaseUser signedInUser;
-  List<dynamic> _curatedListNames = [];
+  List<dynamic> _curatedListItems = [];
+  List<String> _curatedListNames = [];
 
   void fetchSignedInUser() async {
     try {
@@ -49,16 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void getData() async {
     final ExploreAPI exploreAPI = ExploreAPI();
     var httpClient = http.Client();
-    _curatedListNames = await exploreAPI.getCuratedLists(httpClient);
-    logger.d(_curatedListNames);
+    _curatedListItems = await exploreAPI.getCuratedLists(httpClient);
+    logger.d(_curatedListItems);
     setState(() {});
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    fetchSignedInUser();
-    getData();
   }
 
   void _selectBottomSheetItem(String name) {
@@ -102,81 +97,41 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    fetchSignedInUser();
+    getData();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 6,
-      child: Scaffold(
-        appBar: AppBar(
-          leading: Container(),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.person),
-              onPressed: () => _onAvatarPress(),
-            ),
-          ],
-          backgroundColor: Colors.deepPurple,
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(30.0),
-            child: TabBar(
-              isScrollable: true,
-              indicatorColor: Colors.black,
-              unselectedLabelColor: Colors.white.withOpacity(0.3),
-              tabs: <Widget>[
-                Tab(
-                  text: 'Trending',
-                ),
-                Tab(
-                  text: 'Staff Picks',
-                ),
-                Tab(
-                  text: 'Popular Shows',
-                ),
-                Tab(
-                  text: 'News',
-                ),
-                Tab(
-                  text: 'Entertainment',
-                ),
-                Tab(
-                  text: 'Sports',
-                ),
-              ],
-            ),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.graphic_eq),
+          onPressed: () => _onAvatarPress(), // TODO: show bottom modal.
         ),
-        body: TabBarView(
-          children: <Widget>[
-            Container(
-              child: Center(
-                child: Text(_curatedListNames.toString()),
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Text('Tab 2'),
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Text('Tab 3'),
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Text('Tab 4'),
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Text('Tab 5'),
-              ),
-            ),
-            Container(
-              child: Center(
-                child: Text('Tab 6'),
-              ),
-            ),
-          ],
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {}, // TODO: Implement search podcast by show name
+          ),
+          IconButton(
+            icon: Icon(Icons.person),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: Icon(Icons.notifications),
+            onPressed: () {}, // TODO: Navigate to notifications screen
+          ),
+        ],
+        backgroundColor: Colors.deepPurple,
+      ),
+      body: Center(
+        child: ChipBar(
+          chipTitles: _curatedListItems
+              .map((mapItem) => mapItem['name'].toString())
+              .toList(),
         ),
       ),
     );
