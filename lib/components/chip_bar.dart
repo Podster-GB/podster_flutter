@@ -17,7 +17,7 @@ class _ChipBarState extends State<ChipBar> {
     return PreferredSize(
       preferredSize: Size.fromHeight(10.0),
       child: Container(
-        color: Colors.grey.shade100,
+        color: Colors.white,
         height: 40.0,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
@@ -26,17 +26,24 @@ class _ChipBarState extends State<ChipBar> {
             width: 10.0,
           ),
           itemBuilder: (context, index) {
-            return ChoiceChip(
-              selected: _selectedIndex == index,
-              selectedColor: Colors.grey.shade600,
-              label: Text('${widget.chipTitles[index]}'),
-              onSelected: (selected) {
-                if (selected) {
-                  setState(() {
-                    _selectedIndex = index;
-                  });
-                }
-              },
+            return ChipTheme(
+              data: ChipTheme.of(context).copyWith(
+                backgroundColor: Colors.grey.shade200,
+              ),
+              child: ChoiceChip(
+                selected: _selectedIndex == index,
+                selectedColor: Colors.grey.shade800,
+                label: Text(
+                  '${widget.chipTitles[index]}',
+                ),
+                onSelected: (selected) {
+                  if (selected) {
+                    setState(() {
+                      _selectedIndex = index;
+                    });
+                  }
+                },
+              ),
             );
           },
         ),

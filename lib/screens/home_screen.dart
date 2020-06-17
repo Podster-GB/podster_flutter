@@ -29,7 +29,6 @@ class _HomeScreenState extends State<HomeScreen> {
   final GoogleSignIn googleSignIn = GoogleSignIn();
   FirebaseUser signedInUser;
   List<dynamic> _curatedListItems = [];
-  List<String> _curatedListNames = [];
 
   void fetchSignedInUser() async {
     try {
@@ -127,18 +126,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 onPressed: () {}, // TODO: Navigate to notifications screen
               ),
             ],
-            backgroundColor: Colors.deepPurple,
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate.fixed(
-              [
-                ChipBar(
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(30.0),
+              child: ChipBar(
                   chipTitles: _curatedListItems
-                      .map((mapItem) => mapItem['name'].toString())
+                      .map((item) => item['name'].toString())
                       .toList(),
                 ),
-              ],
             ),
+            backgroundColor: Colors.deepPurple,
           ),
         ],
       ),
