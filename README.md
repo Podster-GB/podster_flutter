@@ -1,16 +1,50 @@
-# podster_flutter
+<p align="center">
+  <a href="https://flutter.io/">
+    <img src="https://github.com/Podster-GB/podster_flutter/blob/dev/assets/images/podster-logo.png" alt="Logo" width=72 height=72>
+  </a>
 
-Choose to make sense of the world around you. Choose Podster
+  <h3 align="center">Podster</h3>
 
-## Getting Started
+  <p align="center">
+    Choose to make sense of the world around you. Choose Podster.
+    <br>
+    A podcast app made with  :heart: from London. Available on iOS and Android.
+    <br>
+    <br>
+    <a href="https://github.com/Podster-GB/podster_flutter/issues/new">Report bug</a>
+    ·
+    <a href="https://github.com/Podster-GB/podster_flutter/issues/new">Request feature</a>
+  </p>
+</p>
 
-This project is a starting point for a Flutter application.
+## Table of contents
 
-A few resources to get you started if this is your first Flutter project:
+- [Quick start](#quick-start)
+- [Bugs and feature requests](#bugs-and-feature-requests)
+- [Team](#team)
+- [Copyright and license](#copyright-and-license)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Quick start
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This is a normal flutter app. You should follow the instructions in the [official documentation](https://flutter.io/docs/get-started/install).
+
+## Bugs and feature requests
+
+Have a bug or a feature request? Please first  search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/Podster-GB/podster_flutter/issues/new).
+
+## Team
+
+**Sameen Islam**
+
+- <https://github.com/samisnotinsane>
+
+**Tien Vu**
+- <https://github.com/cakeydoodoo1>
+
+**Brian Luna**
+- <https://github.com/Bluna1311>
+
+
+## Copyright and license
+
+Code and documentation copyright 2020 Podster - All Rights Reserved.
