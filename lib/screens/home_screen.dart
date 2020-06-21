@@ -1,10 +1,27 @@
+import 'package:http/http.dart' as http;
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:logger/logger.dart';
+import 'package:podster_flutter/components/chip_bar.dart';
+import 'package:podster_flutter/playlist.dart';
+import 'package:podster_flutter/podcast.dart';
+import 'package:podster_flutter/services/spreaker/explore_api.dart';
+
+var logger = Logger(
+  printer: PrettyPrinter(
+      methodCount: 1, // number of method calls to be displayed
+      errorMethodCount: 8, // number of method calls if stacktrace is provided
+      lineLength: 30, // width of the output
+      colors: true, // Colorful log messages
+      printEmojis: false, // Print an emoji for each log message
+      printTime: false // Should each log print contain a timestamp
+      ),
+);
 
 class HomeScreen extends StatefulWidget {
   static const String id = '/home';
-  
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -14,51 +31,181 @@ class _HomeScreenState extends State<HomeScreen> {
   final GoogleSignIn googleSignIn = GoogleSignIn();
   FirebaseUser signedInUser;
 
+  final ExploreAPI _exploreAPI = ExploreAPI();
+  List<Playlist> _playlists = [];
+  List<Podcast> _playlistPodcasts = [];
+
   void fetchSignedInUser() async {
     try {
       final FirebaseUser _signedInUser = await _auth.currentUser();
-      _signedInUser != null 
-      ? signedInUser = _signedInUser
-      : print('User not signed in');
-      print('${signedInUser.email} signed in');
-    }
-    catch (e) {
-      print(e);
+      _signedInUser != null
+          ? signedInUser = _signedInUser
+          : logger.w('User not signed in');
+      logger.i('${signedInUser.email} signed in');
+    } catch (e) {
+      logger.e(e);
     }
   }
 
   void signOutWithGoogle() async {
     await googleSignIn.signOut();
-    print('Signed out using Google');
+    logger.i('Signed out using Google');
+  }
+
+  void _selectBottomSheetItem(String name) {
+    Navigator.pop(context); // Remove bottom sheet.
+
+    if (googleSignIn.currentUser != null) {
+      signOutWithGoogle();
+      logger.i('Signed out using Google');
+    } else {
+      _auth.signOut();
+      logger.i('${signedInUser.email} signed out');
+    }
+
+    Navigator.pop(context); // Go to sign in screen.
+  }
+
+  Column _buildBottomSheetMenuItems() {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        ListTile(
+          leading: Icon(Icons.close),
+          title: Text('Sign Out'),
+          onTap: () => _selectBottomSheetItem('signout'),
+        ),
+      ],
+    );
+  }
+
+  void _showBottomBar() {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return SafeArea(
+          child: Container(
+            child: _buildBottomSheetMenuItems(),
+          ),
+        );
+      },
+    );
+  }
+
+  Future<List<Podcast>> getPodcasts(int playlistId) async {
+    List<Podcast> podcasts = [];
+    var httpClient = http.Client();
+    List<dynamic> playlistPodcasts =
+        await _exploreAPI.getCuratedListItems(httpClient, playlistId);
+    for (var playlistPodcast in playlistPodcasts) {
+      podcasts.add(
+        Podcast(
+          title: playlistPodcast['title'],
+          imageUrl: playlistPodcast['image_url'],
+        ),
+      );
+    }
+    httpClient.close();
+    return podcasts;
+  }
+
+  Future<List<Playlist>> getPlaylists() async {
+    List<Playlist> playlists = [];
+    var httpClient = http.Client();
+    List<dynamic> curatedLists = await _exploreAPI.getCuratedLists(httpClient);
+    for (var curatedList in curatedLists) {
+      playlists.add(
+        Playlist(
+          id: curatedList['list_id'],
+          name: curatedList['name'],
+        ),
+      );
+    }
+    httpClient.close();
+    return playlists;
+  }
+
+  void getData() async {
+    _playlists = await getPlaylists();
+    _playlistPodcasts = await getPodcasts(_playlists[0].id);
+    logger.d('${_playlists.length} playlists initialised');
+    logger.d('${_playlistPodcasts.length} podcasts found in this playlist');
+    setState(() {});
   }
 
   @override
   void initState() {
     super.initState();
     fetchSignedInUser();
+    getData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: null,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () {
-              _auth.signOut();
-              signOutWithGoogle();
-              print('${signedInUser.email} signed out');
-              Navigator.pop(context);
-            },
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            pinned: true,
+            leading: IconButton(
+              icon: Icon(Icons.graphic_eq),
+              onPressed: () => _showBottomBar(),
+            ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(Icons.search),
+                onPressed: () {}, // TODO: Implement search podcast by show name
+              ),
+              IconButton(
+                icon: Icon(Icons.person),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: Icon(Icons.notifications),
+                onPressed: () {}, // TODO: Navigate to notifications screen
+              ),
+            ],
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(30.0),
+              child: ChipBar(
+                chips: _playlists,
+                onChipSelect: (Playlist selectedPlaylist) async {
+                  logger.d('\'${selectedPlaylist.name}\' selected on chip bar');
+                  _playlistPodcasts
+                      .removeWhere((element) => true); // Clear the list.
+                  _playlistPodcasts = await getPodcasts(selectedPlaylist.id);
+                  logger
+                      .d('${_playlistPodcasts.length} found in this playlist');
+                  setState(() {});
+                },
+              ),
+            ),
+            backgroundColor: Colors.deepPurple,
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                if (_playlistPodcasts == null) {
+                  logger.e('Failed to show podcasts.');
+                  return Center(
+                    child: Text('No podcasts found.'),
+                  );
+                }
+
+                return Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      leading: Image.network(_playlistPodcasts[index].imageUrl),
+                      title: Text(_playlistPodcasts[index].title),
+                    ),
+                  ),
+                );
+              },
+              childCount: _playlistPodcasts.length,
+            ),
           ),
         ],
-        title: Text('Home'),
-        backgroundColor: Colors.deepPurple[200],
-      ),
-      body: Center(
-        child: Text('Tap X to sign out.'),
       ),
     );
   }

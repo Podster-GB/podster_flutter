@@ -23,10 +23,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            SvgPicture.asset(
-              'assets/images/podster-logo.svg',
-              semanticsLabel: 'Podster Logo',
-              height: 150.0,
+            Flexible(
+              child: SvgPicture.asset(
+                'assets/images/podster-logo.svg',
+                semanticsLabel: 'Podster Logo',
+                height: 150.0,
+              ),
             ),
             Container(
               child: Row(
