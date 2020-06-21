@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:podster_flutter/playlist.dart';
 
 class ChipBar extends StatefulWidget {
-  final List<String> chipTitles;
+  final List<Playlist> chips;
+  final Function onChipSelect;
 
-  ChipBar({@required this.chipTitles});
+  ChipBar({@required this.chips, @required this.onChipSelect});
 
   @override
   _ChipBarState createState() => _ChipBarState();
@@ -21,7 +23,7 @@ class _ChipBarState extends State<ChipBar> {
         height: 40.0,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
-          itemCount: widget.chipTitles.length,
+          itemCount: widget.chips.length,
           separatorBuilder: (context, index) => SizedBox(
             width: 10.0,
           ),
@@ -34,12 +36,13 @@ class _ChipBarState extends State<ChipBar> {
                 selected: _selectedIndex == index,
                 selectedColor: Colors.grey.shade800,
                 label: Text(
-                  '${widget.chipTitles[index]}',
+                  '${widget.chips[index].name}',
                 ),
                 onSelected: (selected) {
                   if (selected) {
                     setState(() {
                       _selectedIndex = index;
+                      widget.onChipSelect(widget.chips[index]);
                     });
                   }
                 },
