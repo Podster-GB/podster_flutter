@@ -6,6 +6,7 @@ import 'package:logger/logger.dart';
 import 'package:podster_flutter/components/chip_bar.dart';
 import 'package:podster_flutter/playlist.dart';
 import 'package:podster_flutter/podcast.dart';
+import 'package:podster_flutter/screens/player_screen.dart';
 import 'package:podster_flutter/services/spreaker/explore_api.dart';
 
 var logger = Logger(
@@ -55,21 +56,31 @@ class _HomeScreenState extends State<HomeScreen> {
   void _selectBottomSheetItem(String name) {
     Navigator.pop(context); // Remove bottom sheet.
 
-    if (googleSignIn.currentUser != null) {
-      signOutWithGoogle();
-      logger.i('Signed out using Google');
-    } else {
-      _auth.signOut();
-      logger.i('${signedInUser.email} signed out');
+    if (name == 'signout') {
+      if (googleSignIn.currentUser != null) {
+        signOutWithGoogle();
+        logger.i('Signed out using Google');
+      } else {
+        _auth.signOut();
+        logger.i('${signedInUser.email} signed out');
+      }
+      Navigator.pop(context); // Go to sign in screen.
     }
 
-    Navigator.pop(context); // Go to sign in screen.
+    if (name == 'player') {
+      Navigator.pushNamed(context, PlayerScreen.id);
+    }
   }
 
   Column _buildBottomSheetMenuItems() {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
+        ListTile(
+          leading: Icon(Icons.play_arrow),
+          title: Text('Now Playing'),
+          onTap: () => _selectBottomSheetItem('player'),
+        ),
         ListTile(
           leading: Icon(Icons.close),
           title: Text('Sign Out'),

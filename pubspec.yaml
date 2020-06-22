@@ -49,7 +49,10 @@ dependencies:
   http: ^0.12.0+2
 
   # Logging.
-  logger: ^0.9.1
+  logger: ^0.7.0+2
+
+  # Audio player.
+  flutter_sound_lite: ^5.0.0
 
 dev_dependencies:
   flutter_test:

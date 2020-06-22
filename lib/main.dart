@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:podster_flutter/constants.dart';
 import 'package:podster_flutter/screens/home_screen.dart';
+import 'package:podster_flutter/screens/player_screen.dart';
 import 'package:podster_flutter/screens/signin_screen.dart';
 import 'package:podster_flutter/screens/signup_screen.dart';
 import 'package:podster_flutter/screens/welcome_screen.dart';
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         SignUpScreen.id: (context) => SignUpScreen(),
         SignInScreen.id: (context) => SignInScreen(),
         HomeScreen.id: (context) => HomeScreen(),
+        PlayerScreen.id: (context) => PlayerScreen(),
       },
     );
   }
