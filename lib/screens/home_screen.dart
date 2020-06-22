@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:podster_flutter/components/section_card.dart';
-import '../mock_data.dart';
 import 'package:logger/logger.dart';
 import 'package:podster_flutter/components/chip_bar.dart';
 import 'package:podster_flutter/playlist.dart';
@@ -35,7 +34,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final ExploreAPI _exploreAPI = ExploreAPI();
   List<Playlist> _playlists = [];
-  List<Podcast> _playlistPodcasts = [];
 
   void fetchSignedInUser() async {
     try {
@@ -129,9 +127,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void getData() async {
     _playlists = await getPlaylists();
-    _playlistPodcasts = await getPodcasts(_playlists[0].id);
+    for (Playlist playlist in _playlists) {
+      playlist.podcasts = await getPodcasts(playlist.id);
+    }
     logger.d('${_playlists.length} playlists initialised');
-    logger.d('${_playlistPodcasts.length} podcasts found in this playlist');
     setState(() {});
   }
 
@@ -144,7 +143,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -174,11 +172,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 chips: _playlists,
                 onChipSelect: (Playlist selectedPlaylist) async {
                   logger.d('\'${selectedPlaylist.name}\' selected on chip bar');
-                  _playlistPodcasts
-                      .removeWhere((element) => true); // Clear the list.
-                  _playlistPodcasts = await getPodcasts(selectedPlaylist.id);
-                  logger
-                      .d('${_playlistPodcasts.length} found in this playlist');
+                  logger.d(
+                      '${selectedPlaylist.podcasts.length} podcasts found in this playlist');
                   setState(() {});
                 },
               ),
@@ -188,32 +183,19 @@ class _HomeScreenState extends State<HomeScreen> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                if (_playlistPodcasts == null) {
+                if (_playlists[index].podcasts == null) {
                   logger.e('Failed to show podcasts.');
                   return Center(
                     child: Text('No podcasts found.'),
                   );
                 }
-                return Column(
-                  children: <Widget>[
-                    SectionCard(
-                      title: _playlists[index].name,
-                      podcasts: _playlistPodcasts,
-                    ),
-                  ],
-                );
 
-                // return Card(
-                //   child: Padding(
-                //     padding: const EdgeInsets.all(8.0),
-                //     child: ListTile(
-                //       leading: Image.network(_playlistPodcasts[index].imageUrl),
-                //       title: Text(_playlistPodcasts[index].title),
-                //     ),
-                //   ),
-                // );
+                return SectionCard(
+                  title: _playlists[index].name,
+                  podcasts: _playlists[index].podcasts,
+                );
               },
-              childCount: _playlistPodcasts.length,
+              childCount: _playlists.length,
             ),
           ),
         ],
