@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:podster_flutter/components/section_covers.dart';
 import 'package:podster_flutter/podcast.dart';
 import 'package:podster_flutter/components/link_button.dart';
 
-import '../mock_data.dart';
 import 'cover.dart';
 
 class SectionCard extends StatelessWidget {
@@ -14,8 +12,6 @@ class SectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // MockData mockDataProvider = MockData(context);
-    // List<Podcast> podcastProvider = mockDataProvider.podcasts;
     List<Cover> forYouCovers = [];
 
     for (Podcast podcast in podcasts) {
@@ -69,36 +65,3 @@ class SectionCard extends StatelessWidget {
     );
   }
 }
-
-// class SectionCovers extends StatelessWidget {
-//   List<Podcast> podcasts;
-
-//   SectionCovers({@required this.podcasts});
-//   @override
-//   Widget build(BuildContext context) {
-//     // MockData mockDataProvider = MockData(context);
-//     List<Cover> forYouCovers = [];
-
-//     for (Podcast podcast in podcasts) {
-//       forYouCovers.add(
-//         Cover(
-//           imageUrl: podcast.imageUrl,
-//           title: podcast.title,
-//           onTap: () {},
-//         ),
-//       );
-//     }
-
-//     return ListView.separated(
-//       scrollDirection: Axis.horizontal,
-//       itemCount: forYouCovers.length,
-//       separatorBuilder: (BuildContext context, int index) =>
-//           SizedBox(width: 5.0),
-//       itemBuilder: (buildContext, int index) {
-//         return forYouCovers[index];
-//       },
-//     );
-//   }
-// }
-
-//next task, try and create mul;tiple cards using the podcast data, make the card more generic
