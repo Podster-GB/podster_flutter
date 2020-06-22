@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:podster_flutter/constants.dart';
+// import 'package:podster_flutter/screens/home.dart';
 import 'package:podster_flutter/screens/home_screen.dart';
 import 'package:podster_flutter/screens/signin_screen.dart';
 import 'package:podster_flutter/screens/signup_screen.dart';
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         primaryColor: PRIMARY_COLOR,
         accentColor: ACCENT_COLOR,
       ),
-      initialRoute: WelcomeScreen.id,
+      initialRoute: HomeScreen.id,
       routes: {
         WelcomeScreen.id: (context) => WelcomeScreen(),
         SignUpScreen.id: (context) => SignUpScreen(),
