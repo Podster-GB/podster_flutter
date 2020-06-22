@@ -8,18 +8,17 @@ import 'cover.dart';
 
 class SectionCard extends StatelessWidget {
   final String title;
-  final List<Podcast> shows;
   final List<Podcast> podcasts;
 
-  SectionCard({@required this.title, this.shows, @required this.podcasts });
+  SectionCard({@required this.title, @required this.podcasts});
 
   @override
   Widget build(BuildContext context) {
-    MockData mockDataProvider = MockData(context);
-    List<Podcast> podcastProvider = mockDataProvider.podcasts;
+    // MockData mockDataProvider = MockData(context);
+    // List<Podcast> podcastProvider = mockDataProvider.podcasts;
     List<Cover> forYouCovers = [];
 
-    for (Podcast podcast in podcastProvider) {
+    for (Podcast podcast in podcasts) {
       forYouCovers.add(
         Cover(
           imageUrl: podcast.imageUrl,

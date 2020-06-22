@@ -5,6 +5,7 @@ import 'package:podster_flutter/screens/home_screen.dart';
 import 'package:podster_flutter/screens/signin_screen.dart';
 import 'package:podster_flutter/screens/signup_screen.dart';
 import 'package:podster_flutter/screens/welcome_screen.dart';
+import 'package:logger/logger.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Logger.level = Level.verbose;
     return MaterialApp(
       title: 'Podster',
       theme: ThemeData(
