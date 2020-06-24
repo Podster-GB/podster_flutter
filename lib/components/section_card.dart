@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:podster_flutter/podcast.dart';
 import 'package:podster_flutter/components/link_button.dart';
+import 'package:podster_flutter/screens/show_detail.dart';
+import 'package:podster_flutter/components/episode_item.dart';
+import 'package:podster_flutter/components/episode_page.dart';
+
 
 import 'cover.dart';
 
@@ -19,7 +23,25 @@ class SectionCard extends StatelessWidget {
         Cover(
           imageUrl: podcast.imageUrl,
           title: podcast.title,
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => 
+
+                ShowDetail(
+                  podcast: podcast,
+                  // showEpisodes: List<EpisodeItem>.generate(
+                  //     podcast.episodes.length,
+                  //     (i) => EpisodeItem(
+                  //         title: podcast.episodes[i].title,
+                  //         pubDate: podcast.episodes[i].pubDate,
+                  //         duration: podcast.episodes[i].duration,
+                  //         description: podcast.episodes[i].description)),
+                ),
+              ),
+            );
+          },
         ),
       );
     }
@@ -65,3 +87,5 @@ class SectionCard extends StatelessWidget {
     );
   }
 }
+
+

@@ -64,11 +64,11 @@ class Home extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ShowDetail(
-                          showName: forYouHighlights[i].title,
-                          showSynopsis: forYouHighlights[i].synopsis,
-                          showAuthor: forYouHighlights[i].author,
-                          showImageUrl: forYouHighlights[i].imageUrl,
-                          showGenre: forYouHighlights[i].genre,
+                          // showName: forYouHighlights[i].title,
+                          // showSynopsis: forYouHighlights[i].synopsis,
+                          // showAuthor: forYouHighlights[i].author,
+                          // showImageUrl: forYouHighlights[i].imageUrl,
+                          // showGenre: forYouHighlights[i].genre,
                           showEpisodes: List<EpisodeItem>.generate(
                             forYouHighlights[i].episodes.length,
                             (j) => EpisodeItem(
