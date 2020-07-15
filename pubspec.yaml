@@ -52,7 +52,7 @@ dependencies:
   logger: ^0.7.0+2
 
   # Audio player.
-  flutter_sound_lite: ^5.0.0
+  audioplayers: ^0.15.1
 
 dev_dependencies:
   flutter_test:

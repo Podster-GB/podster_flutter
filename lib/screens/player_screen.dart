@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 
@@ -26,7 +27,7 @@ class PlayerScreen extends StatelessWidget {
               child: Placeholder(),
             ),
             Flexible(
-              child: ControlButtons(),
+              child: PlayerControls(),
             ),
           ],
         ),
@@ -35,7 +36,35 @@ class PlayerScreen extends StatelessWidget {
   }
 }
 
-class ControlButtons extends StatelessWidget {
+class PlayerControls extends StatefulWidget {
+  @override
+  _PlayerControlsState createState() => _PlayerControlsState();
+}
+
+class _PlayerControlsState extends State<PlayerControls> {
+  AudioPlayer _audioPlayer;
+  bool _isPlaying = false;
+
+  @override
+  void initState() {
+    // AudioPlayer.logEnabled = true;
+    _audioPlayer = AudioPlayer(playerId: 'id-podster-001');
+    super.initState();
+  }
+
+  void play(String url) async {
+    int result = await _audioPlayer.play(url);
+    if (result == 1) {
+      // success
+      logger.d('player result: $result');
+    }
+  }
+
+  void pause() async {
+    int result = await _audioPlayer.pause();
+    logger.d('player result: $result');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -46,8 +75,16 @@ class ControlButtons extends StatelessWidget {
           icon: Icon(Icons.replay_10),
         ),
         IconButton(
-          onPressed: () => null,
-          icon: Icon(Icons.play_arrow),
+          onPressed: () {
+            final url = 'https://traffic.libsyn.com/joeroganexp/p1507.mp3';
+            if (_isPlaying) {
+              pause();
+            } else {
+              play(url);
+            }
+            setState(() => _isPlaying = !_isPlaying);
+          },
+          icon: _isPlaying ? Icon(Icons.pause) : Icon(Icons.play_arrow),
         ),
         IconButton(
           onPressed: () => null,
